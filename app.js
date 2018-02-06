@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
 
 require('./configs/db.config');
-require('./configs/passport.config').setup(passport);
+//require('./configs/passport.config').setup(passport);
 
 const home = require('./routes/home.routes');
 const auth = require('./routes/auth.routes');
@@ -44,13 +44,13 @@ app.use(session({
     ttl: 24 * 60 * 60
   })
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
 
-app.use(function (req, res, next) {
-  res.locals.session = req.user || {};
-  next();
-});
+//app.use(function (req, res, next) {
+  //res.locals.session = req.user || {};
+  //next();
+//});
 
 
 app.use('/', home);
