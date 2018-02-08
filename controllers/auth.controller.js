@@ -26,3 +26,43 @@ module.exports.doSignup = (req, res, next) => {
           }  
       }).catch(error => next(error));
 }
+
+module.exports.login = (req, res, next) => {
+    res.render('auth/login');
+}
+
+module.exports.doLogin = (req, res, next) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    if (!email || !password) {
+        res.render('auth/login', {
+            user: { email: email },
+            error: {
+                email: email ? '' : 'Email is required',
+                password: password ? '' : 'Password is required'
+            }
+        });
+    } else {
+        passport.authenticate('local-auth', (error, user, validation) => {
+            if (error) {
+                next(error);
+            } else if (!user) {
+                res.render('auth/login', {error: validation});
+            } else {
+                req.login(user, (error) => {
+                    if (error) {
+                        next(error);
+                    } else {
+                        res.redirect('/profile');
+                    }
+                });
+            }
+        })(req, res, next);
+    }
+}
+
+module.exports.logout = (req, res, next) => {
+    req.logout();
+    res.redirect('/login');
+}
