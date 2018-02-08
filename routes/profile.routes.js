@@ -5,4 +5,6 @@ const secure = require('../configs/passport.config');
 
 router.get('/', secure.isAuthenticated, profileController.index);
 
+router.get('/edit', secure.isAuthenticated, profileController.editProfile);
+
 module.exports = router;
