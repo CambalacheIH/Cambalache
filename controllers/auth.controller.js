@@ -35,7 +35,7 @@ module.exports.doLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    if (!username || !password) {
+    if (!email || !password) {
         res.render('auth/login', {
             user: { email: email },
             error: {
@@ -54,10 +54,15 @@ module.exports.doLogin = (req, res, next) => {
                     if (error) {
                         next(error);
                     } else {
-                        res.redirect('/');
+                        res.redirect('/profile');
                     }
                 });
             }
         })(req, res, next);
     }
+}
+
+module.exports.logout = (req, res, next) => {
+    req.logout();
+    res.redirect('/login');
 }
