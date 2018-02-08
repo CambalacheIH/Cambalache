@@ -1,6 +1,45 @@
-<form action="/profile">
+<form action="/profile" method="POST">
   Name:
   <input type="text" name="name" value="<%= user.name %>">
   Surname:
-  <input type="text" name="surname">
+  <input type="text" name="surname" value="<%= user.surname %>">
+
+<br>
+
+Preferencias de búsqueda:
+
+<br>
+
+Punto de recogida:
+<br>
+Categorías:
+<br>
+<label><input type="checkbox" name="">Ropa y accesorios</label>
+<br>
+<label><input type="checkbox" name="">Deporte y ocio</label>
+<br>
+<label><input type="checkbox" name="">Consolas y juegos</label>
+<br>
+<label><input type="checkbox" name="">Libros</label>
+<br>
+<label><input type="checkbox" name="">Películas</label>
+<br>
+<label><input type="checkbox" name="">Música</label>
+<br>
+<label><input type="checkbox" name="">Instrumentos</label>
+<br>
+<label><input type="checkbox" name="">Juguetes</label>
+<br>
+<label><input type="checkbox" name="">Fotografía</label>
+<br>
+<label><input type="checkbox" name="">Electrónica</label>
+<br>
+<label><input type="checkbox" name="">Electrodomésticos</label>
+<br>
+
+
+Rango de precios:
+
 </form>
+<button type="submit">Save changes</button>
+<a href="/profile">Leave without changes</a>

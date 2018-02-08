@@ -11,3 +11,14 @@ module.exports.editProfile = (req, res, next) => {
     res.render('profile/edit', {user});
   });
 }
+
+module.exports.updateProfile = (req, res, next) => {
+  const userId = req.user.id;
+
+  const {name, surname} = req.body;
+  const updates = {name, surname};
+
+  User.findByIdAndUpdate(userId, updates).then((user) => {
+    res.redirect('/profile');
+  });
+}
