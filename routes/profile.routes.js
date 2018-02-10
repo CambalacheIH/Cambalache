@@ -9,6 +9,6 @@ router.get('/edit', secure.isAuthenticated, profileController.editProfile);
 router.post('/', secure.isAuthenticated, profileController.updateProfile);
 
 router.get('/new-product', secure.isAuthenticated, profileController.newProduct);
-
+router.post('/product', secure.isAuthenticated, profileController.createProduct);
 
 module.exports = router;
