@@ -22,7 +22,12 @@ const userSchema = new mongoose.Schema({
   },
   surname: {
     type: String
-  }
+  },
+  objects: [
+    {type: Schema.Types.ObjectId,
+      ref: 'Product'
+    }
+  ],
 }, {timestamps: true});
 
 userSchema.pre('save', function (next) {
@@ -37,14 +42,14 @@ userSchema.pre('save', function (next) {
               .then(hash => {
                   user.password = hash;
                   next();
-              })
+              });
       })
       .catch(error => next(error));
 });
 
 userSchema.methods.checkPassword = function (password) {
   return bcrypt.compare(password, this.password);
-}
+};
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
