@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   password: {
     type: String,
     required: [true, 'Password is required'],
@@ -22,7 +23,12 @@ const userSchema = new mongoose.Schema({
   },
   surname: {
     type: String
-  }
+  },
+  products: [
+    {type: Schema.Types.ObjectId,
+      ref: 'Product'
+    }
+  ],
 }, {timestamps: true});
 
 userSchema.pre('save', function (next) {
@@ -37,14 +43,14 @@ userSchema.pre('save', function (next) {
               .then(hash => {
                   user.password = hash;
                   next();
-              })
+              });
       })
       .catch(error => next(error));
 });
 
 userSchema.methods.checkPassword = function (password) {
   return bcrypt.compare(password, this.password);
-}
+};
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

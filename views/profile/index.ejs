@@ -8,3 +8,26 @@ Hola <%= user.name %> <%= user.surname %> <a href="/profile/edit">Editar</a>
 <form action="/logout">
   <button type="submit">Logout</button>
 </form>
+
+<a href="/profile/new-product">Create New Product </a>
+
+<% if(products.length > 0) { %>
+
+
+<ul>
+  <% products.forEach((product) => { %>
+    <li>
+      <%= product.productName %> <br>
+      <%= product.productDescription %> <br>
+      <%= product.productMinPrice %> <br>
+      <%= product.productMaxPrice %> <br>
+      <a href='/profile/<%= product._id %>/edit'> Editar</a> <br>
+      <form action="profile/<%= product._id %>/delete" method="Post">
+        <input type="submit" value="delete">
+      </form>
+    </li>
+  <%})%>
+</ul>
+<% } else { %>
+  <p>No products available</p>
+<% } %>

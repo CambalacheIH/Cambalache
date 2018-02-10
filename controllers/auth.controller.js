@@ -4,13 +4,13 @@ const User = require('../models/user.model');
 
 module.exports.signup = (req, res, next) => {
   res.render('auth/signup');
-}
+};
 
 module.exports.doSignup = (req, res, next) => {
   User.findOne({ email: req.body.email })
       .then(user => {
           if (user != null) {
-              res.render('auth/signup', { user: user, error: { email: 'Email is already used'} })
+              res.render('auth/signup', { user: user, error: { email: 'Email is already used'} });
           } else {
               user = new User(req.body);
               user.save()
@@ -18,18 +18,18 @@ module.exports.doSignup = (req, res, next) => {
                       res.redirect('/login');
                   }).catch(error => {
                       if (error instanceof mongoose.Error.ValidationError) {
-                          res.render('auth/signup', { user: user, error: error.errors })
+                          res.render('auth/signup', { user: user, error: error.errors });
                       } else {
                           next(error);
                       }
                   });
-          }  
+          }
       }).catch(error => next(error));
-}
+};
 
 module.exports.login = (req, res, next) => {
     res.render('auth/login');
-}
+};
 
 module.exports.doLogin = (req, res, next) => {
     const email = req.body.email;
@@ -60,9 +60,9 @@ module.exports.doLogin = (req, res, next) => {
             }
         })(req, res, next);
     }
-}
+};
 
 module.exports.logout = (req, res, next) => {
     req.logout();
     res.redirect('/login');
-}
+};

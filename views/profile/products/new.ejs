@@ -1,0 +1,28 @@
+<% if (product.isNew) { %>
+ <h2>Create a new product</h2>
+<% } else { %>
+ <h2>Edit your product</h2>
+<% } %>
+
+<% if (product.isNew) {%>
+  <form action="/profile/product" method="POST">
+<% } else { %>
+  <form action="/profile/<%= product.id %>" method="Post">
+<% } %>
+  Product Name:
+  <input type="text" name="productName" value="<%= product.productName%>">
+  Description:
+  <input type="text" name="productDescription" value="<%= product.productDescription%>">
+  Minimum Price:
+  <input type="number" name="productMinPrice" value="<%= product.productMinPrice%>">
+  maximum Price
+  <input type="number" name="productMaxPrice" value="<%= product.productMaxPrice%>" >
+
+  <% if (product.isNew) {%>
+    <button type="submit">Create new product</button>
+  <% } else { %>
+    <button type="submit">Edit your product</button>
+  <% } %>
+
+
+</form>

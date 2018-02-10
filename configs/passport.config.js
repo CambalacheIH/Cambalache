@@ -38,7 +38,7 @@ module.exports.setup = (passport) => {
       .catch(error => next(error));
   }));
 
-}
+};
 
 module.exports.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated ()) {
@@ -47,7 +47,7 @@ module.exports.isAuthenticated = (req, res, next) => {
     res.status(401);
     res.redirect('/login');
   }
-}
+};
 
 module.exports.nonAuthenticated = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -55,4 +55,4 @@ module.exports.nonAuthenticated = (req, res, next) => {
   } else {
     res.redirect('/');
   }
-}
+};
