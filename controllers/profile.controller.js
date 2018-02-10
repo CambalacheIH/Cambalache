@@ -43,19 +43,26 @@ module.exports.newProduct = (req, res, next) => {
 module.exports.createProduct = (req, res, next) => {
   const userId = req.user.id;
   console.log('he entrado');
-  new Product({
+  let newProduct = {
     productName: req.body.productName,
     productDescription: req.body.productDescription,
     productMinPrice: req.body.productMinPrice,
     productMaxPrice: req.body.productMaxPrice,
     owner: userId,
-    productPhoto: `/photos/${req.file.filename}`
-  }).save()
+    productPhoto: null
+  };
+
+  if (req.file) {
+    newProduct.productPhoto = `/photos/${req.file.filename}`;
+  }
+
+  new Product(newProduct).save()
     .then((product) => {
       res.redirect('/profile');
     })
     .catch((error) => {
       res.render('profile/products/new', {
+        product: new Product(),
         error: error,
         path: req.path
       });

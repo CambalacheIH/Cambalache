@@ -4,10 +4,11 @@
  <h2>Edit your product</h2>
 <% } %>
 
+<%= error.message %> 
 <% if (product.isNew) {%>
   <form action="/profile/products" method="POST" enctype="multipart/form-data">
 <% } else { %>
-  <form action="/profile/<%= product.id %>" method="Post" enctype="multipart/form-data">
+  <form action="/profile/products/<%= product.id %>" method="POST" enctype="multipart/form-data">
 <% } %>
   Product Name:
   <input type="text" name="productName" value="<%= product.productName%>">

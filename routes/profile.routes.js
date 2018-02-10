@@ -5,11 +5,12 @@ const secure = require('../configs/passport.config');
 const upload = require('../configs/multer.config');
 
 router.get('/', secure.isAuthenticated, profileController.index);
+router.post('/products', secure.isAuthenticated, upload.single('pic'), profileController.createProduct);
 
 router.get('/:id', secure.isAuthenticated, profileController.editProfile);
 router.post('/:id', secure.isAuthenticated, profileController.updateProfile);
 
-router.post('/products', secure.isAuthenticated, upload.single('pic'), profileController.createProduct);
+
 //router.get to see te picture
 router.get('/products/new', secure.isAuthenticated, profileController.newProduct);
 
