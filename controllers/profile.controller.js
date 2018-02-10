@@ -33,7 +33,9 @@ module.exports.updateProfile = (req, res, next) => {
 };
 
 module.exports.newProduct = (req, res, next) => {
-  res.render('profile/products/new');
+  res.render('profile/products/new', {
+    product: new Product()
+  });
 };
 
 module.exports.createProduct = (req, res, next) => {
@@ -63,4 +65,23 @@ module.exports.deleteProduct = (req, res, next) => {
       res.redirect('/profile');
     })
     .catch (error => next());
+};
+
+module.exports.editProduct = (req, res, next) => {
+  Product.findById(req.params.id)
+    .then((product) => {
+      res.render('profile/products/new', {product});
+    })
+    .catch (error => next ());
+};
+
+module.exports.updateProduct = (req, res, next) => {
+  const productId = req.params.id;
+  const { productName, productDescription, productMinPrice, productMaxPrice} = req.body;
+  const updates = { productName, productDescription, productMinPrice, productMaxPrice};
+  Product.findByIdAndUpdate(productId, updates)
+    .then((product) => {
+      res.redirect('/profile');
+    })
+    .catch (error => next ());
 };

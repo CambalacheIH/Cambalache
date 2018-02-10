@@ -13,4 +13,7 @@ router.post('/product', secure.isAuthenticated, profileController.createProduct)
 
 router.post('/:id/delete', secure.isAuthenticated, profileController.deleteProduct);
 
+router.get('/:id/edit', secure.isAuthenticated, profileController.editProduct);
+router.post('/:id', secure.isAuthenticated, profileController.updateProduct);
+
 module.exports = router;
