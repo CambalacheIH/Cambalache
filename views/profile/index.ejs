@@ -1,4 +1,4 @@
-Hola <%= user.name %> <%= user.surname %> <a href="/profile/edit">Editar</a>
+Hola <%= user.name %> <%= user.surname %> <a href="/profile/<%= user._id %>">Editar</a>
 
 <hr>
 <hr>
@@ -9,7 +9,7 @@ Hola <%= user.name %> <%= user.surname %> <a href="/profile/edit">Editar</a>
   <button type="submit">Logout</button>
 </form>
 
-<a href="/profile/new-product">Create New Product </a>
+<a href="/profile/products/new">Create New Product </a>
 
 <% if(products.length > 0) { %>
 
@@ -22,8 +22,8 @@ Hola <%= user.name %> <%= user.surname %> <a href="/profile/edit">Editar</a>
       <%= product.productMinPrice %> <br>
       <%= product.productMaxPrice %> <br>
       <img src="<%= product.productPhoto%>">
-      <a href='/profile/<%= product._id %>/edit'> Editar</a> <br>
-      <form action="profile/<%= product._id %>/delete" method="Post">
+      <a href='/profile/products/<%= product._id %>'> Editar</a> <br>
+      <form action="profile/products/<%= product._id %>/delete" method="Post">
         <input type="submit" value="delete">
       </form>
     </li>

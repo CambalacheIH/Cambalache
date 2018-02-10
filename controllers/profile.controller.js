@@ -41,8 +41,8 @@ module.exports.newProduct = (req, res, next) => {
 };
 
 module.exports.createProduct = (req, res, next) => {
-  console.dir(req.file);
   const userId = req.user.id;
+  console.log('he entrado');
   new Product({
     productName: req.body.productName,
     productDescription: req.body.productDescription,
