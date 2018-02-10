@@ -5,9 +5,9 @@
 <% } %>
 
 <% if (product.isNew) {%>
-  <form action="/profile/product" method="POST">
+  <form action="/profile/product" method="POST" enctype="multipart/form-data">
 <% } else { %>
-  <form action="/profile/<%= product.id %>" method="Post">
+  <form action="/profile/<%= product.id %>" method="Post" enctype="multipart/form-data">
 <% } %>
   Product Name:
   <input type="text" name="productName" value="<%= product.productName%>">
@@ -17,6 +17,8 @@
   <input type="number" name="productMinPrice" value="<%= product.productMinPrice%>">
   maximum Price
   <input type="number" name="productMaxPrice" value="<%= product.productMaxPrice%>" >
+  photo
+  <input type="file" name="pic" />
 
   <% if (product.isNew) {%>
     <button type="submit">Create new product</button>
