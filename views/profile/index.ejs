@@ -21,6 +21,7 @@ Hola <%= user.name %> <%= user.surname %> <a href="/profile/edit">Editar</a>
       <%= product.productDescription %> <br>
       <%= product.productMinPrice %> <br>
       <%= product.productMaxPrice %> <br>
+      <img src="<%= product.productPhoto%>">
       <a href='/profile/<%= product._id %>/edit'> Editar</a> <br>
       <form action="profile/<%= product._id %>/delete" method="Post">
         <input type="submit" value="delete">
