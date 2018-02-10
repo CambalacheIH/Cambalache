@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   password: {
     type: String,
     required: [true, 'Password is required'],
@@ -23,7 +24,7 @@ const userSchema = new mongoose.Schema({
   surname: {
     type: String
   },
-  objects: [
+  products: [
     {type: Schema.Types.ObjectId,
       ref: 'Product'
     }

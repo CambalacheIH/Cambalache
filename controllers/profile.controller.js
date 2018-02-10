@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const passport = require('passport');
 const User = require('../models/user.model');
+const Product = require ('../models/product.model');
 
 module.exports.index = (req, res, next) => {
   res.render('profile/index', {user: req.user});
@@ -23,4 +24,12 @@ module.exports.updateProfile = (req, res, next) => {
   User.findByIdAndUpdate(userId, updates).then((user) => {
     res.redirect('/profile');
   });
+};
+
+module.exports.newProduct = (req, res, next) => {
+  res.render('/profile/products/new');
+};
+
+module.exports.createProduct = (req, res, next) => {
+  const userId = req.user.id;
 };
