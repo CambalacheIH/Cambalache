@@ -2,18 +2,23 @@ const express = require('express');
 const router = express.Router();
 const profileController = require('../controllers/profile.controller');
 const secure = require('../configs/passport.config');
+const upload = require('../configs/multer.config');
 
 router.get('/', secure.isAuthenticated, profileController.index);
+router.post('/products', secure.isAuthenticated, upload.single('pic'), profileController.createProduct);
 
-router.get('/edit', secure.isAuthenticated, profileController.editProfile);
-router.post('/', secure.isAuthenticated, profileController.updateProfile);
+router.get('/:id', secure.isAuthenticated, profileController.editProfile);
+router.post('/:id', secure.isAuthenticated, profileController.updateProfile);
 
-router.get('/new-product', secure.isAuthenticated, profileController.newProduct);
-router.post('/product', secure.isAuthenticated, profileController.createProduct);
 
-router.post('/:id/delete', secure.isAuthenticated, profileController.deleteProduct);
+//router.get to see te picture
+router.get('/products/new', secure.isAuthenticated, profileController.newProduct);
 
-router.get('/:id/edit', secure.isAuthenticated, profileController.editProduct);
-router.post('/:id', secure.isAuthenticated, profileController.updateProduct);
+router.post('products/:id/delete', secure.isAuthenticated, profileController.deleteProduct);
+
+router.get('products/:id', secure.isAuthenticated, profileController.editProduct);
+router.post('products/:id', secure.isAuthenticated, profileController.updateProduct);
+
+
 
 module.exports = router;

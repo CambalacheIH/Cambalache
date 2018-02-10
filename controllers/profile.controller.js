@@ -2,14 +2,15 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const User = require('../models/user.model');
 const Product = require ('../models/product.model');
+const path = require ('path');
 
 module.exports.index = (req, res, next) => {
   Product.find({'owner': req.user.id})
     .then((products) => {
       res.render('profile/index', {
         products: products,
-        user: req.user
-        //path
+        user: req.user,
+        path: req.path
       });
     });
 };
@@ -34,26 +35,36 @@ module.exports.updateProfile = (req, res, next) => {
 
 module.exports.newProduct = (req, res, next) => {
   res.render('profile/products/new', {
-    product: new Product()
+    product: new Product(),
+    path: req.path
   });
 };
 
 module.exports.createProduct = (req, res, next) => {
   const userId = req.user.id;
-  new Product({
+  console.log('he entrado');
+  let newProduct = {
     productName: req.body.productName,
     productDescription: req.body.productDescription,
     productMinPrice: req.body.productMinPrice,
     productMaxPrice: req.body.productMaxPrice,
-    owner: userId
-  }).save()
+    owner: userId,
+    productPhoto: null
+  };
+
+  if (req.file) {
+    newProduct.productPhoto = `/photos/${req.file.filename}`;
+  }
+
+  new Product(newProduct).save()
     .then((product) => {
       res.redirect('/profile');
     })
     .catch((error) => {
       res.render('profile/products/new', {
-        error: error
-        //path
+        product: new Product(),
+        error: error,
+        path: req.path
       });
   });
 
@@ -84,4 +95,12 @@ module.exports.updateProduct = (req, res, next) => {
       res.redirect('/profile');
     })
     .catch (error => next ());
+};
+
+module.exports.pic = (req, res, next ) =>{
+  Product.findById (req.params.id)
+    .then((product) => {
+      res.sendFile(path.join(__dirname, '../', product.file));
+    })
+    .catch(error => next());
 };
