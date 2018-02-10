@@ -11,4 +11,6 @@ router.post('/', secure.isAuthenticated, profileController.updateProfile);
 router.get('/new-product', secure.isAuthenticated, profileController.newProduct);
 router.post('/product', secure.isAuthenticated, profileController.createProduct);
 
+router.post('/:id/delete', secure.isAuthenticated, profileController.deleteProduct);
+
 module.exports = router;

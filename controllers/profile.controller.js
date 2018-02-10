@@ -4,8 +4,16 @@ const User = require('../models/user.model');
 const Product = require ('../models/product.model');
 
 module.exports.index = (req, res, next) => {
-  res.render('profile/index', {user: req.user});
+  Product.find({'owner': req.user.id})
+    .then((products) => {
+      res.render('profile/index', {
+        products: products,
+        user: req.user
+        //path
+      });
+    });
 };
+
 
 module.exports.editProfile = (req, res, next) => {
   User.findById(req.user.id)
@@ -47,4 +55,12 @@ module.exports.createProduct = (req, res, next) => {
       });
   });
 
+};
+
+module.exports.deleteProduct = (req, res, next) => {
+  Product.remove({ _id: req.params.id})
+    .then (() => {
+      res.redirect('/profile');
+    })
+    .catch (error => next());
 };
