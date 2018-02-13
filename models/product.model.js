@@ -22,7 +22,7 @@ const productSchema = new Schema({
   },
   productPhoto: {
     type: String,
-    required: [true, 'upload your photo']
+    required: [true, 'Upload a valid photo (JPG, JPEG, PNG, GIF)']
   },
   owner: {
     type: Schema.Types.ObjectId,
