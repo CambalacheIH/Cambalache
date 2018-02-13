@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/auth.controller');
-const secure = require('../configs/passport.config');
+const secure = require('../middlewares/secure.middleware');
 
 router.get('/signup', secure.nonAuthenticated, authController.signup);
 router.post('/signup', secure.nonAuthenticated, authController.doSignup);
