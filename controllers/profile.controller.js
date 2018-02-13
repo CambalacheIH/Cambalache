@@ -15,7 +15,6 @@ module.exports.index = (req, res, next) => {
     });
 };
 
-
 module.exports.editProfile = (req, res, next) => {
   User.findById(req.user.id)
     .then((user) => {
@@ -42,7 +41,7 @@ module.exports.newProduct = (req, res, next) => {
 
 module.exports.createProduct = (req, res, next) => {
   const userId = req.user.id;
-  console.log('he entrado');
+
   let newProduct = {
     productName: req.body.productName,
     productDescription: req.body.productDescription,
@@ -55,15 +54,16 @@ module.exports.createProduct = (req, res, next) => {
   if (req.file) {
     newProduct.productPhoto = `/photos/${req.file.filename}`;
   }
-
+  
   new Product(newProduct).save()
     .then((product) => {
       res.redirect('/profile');
     })
     .catch((error) => {
+      console.log(error.message);
       res.render('profile/products/new', {
         product: new Product(),
-        error: error,
+        message: error.errors.productPhoto,
         path: req.path
       });
   });
@@ -88,13 +88,12 @@ module.exports.editProduct = (req, res, next) => {
 
 module.exports.updateProduct = (req, res, next) => {
   const productId = req.params.id;
-  const { productName, productDescription, productMinPrice, productMaxPrice} = req.body;
-  const updates = { productName, productDescription, productMinPrice, productMaxPrice};
-  Product.findByIdAndUpdate(productId, updates)
-    .then((product) => {
-      res.redirect('/profile');
-    })
-    .catch (error => next ());
+  const { productName, productDescription, productMinPrice, productMaxPrice } = req.body;
+  const updates = { productName, productDescription, productMinPrice, productMaxPrice };
+
+  Product.findByIdAndUpdate(productId, updates).then((product) => {
+    res.redirect('/profile');
+  });
 };
 
 module.exports.pic = (req, res, next ) =>{
