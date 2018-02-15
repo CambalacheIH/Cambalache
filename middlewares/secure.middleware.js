@@ -32,7 +32,6 @@ module.exports.isUserOwner = (req, res, next) => {
 };
 
 module.exports.isUser = (req, res, next) => {
-  console.log(req.user.id);
   if (req.user.id == req.params.id) {
     next();
   } else {
