@@ -1,0 +1,32 @@
+<h1>Our pickup points</h1>
+<div id="map" style="width:800px; height:500px"></div>
+<a href="/pickups/new">Create a new pickup point</a>
+
+<script type="text/javascript">
+  var map;
+  var currentMarker;
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 40.392694, lng: -3.698421},
+      zoom: 14,
+      fullscreenControl: false
+    });
+  }
+</script>
+
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACXj5MT5dfwSpf5PFu3hoVOIGdSopWBjM&callback=initMap"></script>
+
+<% pickups.forEach((pickup) => { %>
+
+  <script type="text/javascript">
+    new google.maps.Marker({
+      position: {
+        lat: <%= pickup.location.coordinates[0] %>,
+        lng: <%= pickup.location.coordinates[1] %>
+      },
+      map: map
+    });
+  </script>
+<%})%>
