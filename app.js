@@ -16,6 +16,7 @@ require('./configs/passport.config').setup(passport);
 const home = require('./routes/home.routes');
 const auth = require('./routes/auth.routes');
 const profile = require('./routes/profile.routes');
+const pickup = require('./routes/pickup.routes');
 
 const app = express();
 
@@ -57,6 +58,7 @@ app.use(function (req, res, next) {
 app.use('/', home);
 app.use('/', auth);
 app.use('/profile', profile);
+app.use('/pickup', pickup);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
