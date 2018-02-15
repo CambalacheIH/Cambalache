@@ -1,0 +1,55 @@
+<div id="map" style="width:800px; height:500px"></div>
+
+<h2>Add a new pickup point</h2>
+<form action="/pickups" method="POST">
+  Name:
+  <input type="text" name="name">
+  Open hour:
+  <input type="number" name="openHour" max="23" min="0">
+  Close hour:
+  <input type="number" name="closeHour" max="23" min="0">
+  Latitude:
+  <input type="text" name="latitude" id="latitude">
+  Longitude:
+  <input type="text" name="longitude" id="longitude">
+  <input type="submit" value="Create pickup point">
+</form>
+
+<script type="text/javascript">
+  var map;
+  var currentMarker;
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 40.392694, lng: -3.698421},
+      zoom: 14,
+      fullscreenControl: false
+    });
+
+    setListener();
+  }
+
+  function setListener() {
+    map.addListener('click', function(event) {
+      if (currentMarker != undefined) {
+        currentMarker.setMap(null);
+      } 
+      
+      addMarker(event.latLng.toJSON());
+
+      document.getElementById('latitude').value = currentMarker.position.lat();
+      document.getElementById('longitude').value = currentMarker.position.lng();
+    });
+  };
+
+  function addMarker(position) {
+    currentMarker = new google.maps.Marker({
+        position: position,
+        map: map
+    });
+  }
+</script>
+
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACXj5MT5dfwSpf5PFu3hoVOIGdSopWBjM&callback=initMap"
+async defer></script>
