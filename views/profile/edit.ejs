@@ -14,7 +14,7 @@ Punto de recogida:
 <br>
 Categorías:
 
-  <select multiple="multiple" id="categories" name="categories[]">
+  <select multiple="multiple" id="categories" name="categories">
     <% categories.forEach((category) =>{%>
       <option value="<%= category.toLowerCase()%>"><%=category%></option>
     <%})%>
