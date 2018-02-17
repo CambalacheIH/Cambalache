@@ -40,7 +40,8 @@ module.exports.updateProfile = (req, res, next) => {
 module.exports.newProduct = (req, res, next) => {
   res.render('profile/products/new', {
     product: new Product(),
-    path: req.path
+    path: req.path,
+    categories: CATEGORIES
   });
 };
 
@@ -53,7 +54,8 @@ module.exports.createProduct = (req, res, next) => {
     productMinPrice: req.body.productMinPrice,
     productMaxPrice: req.body.productMaxPrice,
     owner: userId,
-    productPhoto: null
+    productPhoto: null,
+    categories: req.body.categories
   };
 
   if (req.file) {
@@ -63,14 +65,17 @@ module.exports.createProduct = (req, res, next) => {
   new Product(newProduct).save()
     .then((product) => {
       res.redirect('/profile');
+      console.log(req.body);
     })
     .catch((error) => {
       console.log(error.message);
       res.render('profile/products/new', {
         product: new Product(),
         message: error.errors.productPhoto,
-        path: req.path
+        path: req.path,
+        categories: CATEGORIES
       });
+      console.log(req.body);
   });
 
 };
@@ -86,15 +91,18 @@ module.exports.deleteProduct = (req, res, next) => {
 module.exports.editProduct = (req, res, next) => {
   Product.findById(req.params.id)
     .then((product) => {
-      res.render('profile/products/new', {product});
+      res.render('profile/products/new', {
+        product: product,
+        categories: CATEGORIES
+      });
     })
     .catch (error => next ());
 };
 
 module.exports.updateProduct = (req, res, next) => {
   const productId = req.params.id;
-  const { productName, productDescription, productMinPrice, productMaxPrice } = req.body;
-  const updates = { productName, productDescription, productMinPrice, productMaxPrice };
+  const { productName, productDescription, productMinPrice, productMaxPrice, categories } = req.body;
+  const updates = { productName, productDescription, productMinPrice, productMaxPrice, categories};
 
   Product.findByIdAndUpdate(productId, updates).then((product) => {
     res.redirect('/profile');

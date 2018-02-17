@@ -12,12 +12,18 @@ Preferencias de búsqueda:
 
 Punto de recogida:
 <br>
-Categorías:
 
+Categorías:
+  <pre> <%= user.categories %></pre>
   <select multiple="multiple" id="categories" name="categories">
-    <% categories.forEach((category) =>{%>
-      <option value="<%= category.toLowerCase()%>"><%=category%></option>
-    <%})%>
+
+    <% categories.forEach((category) => { %>
+        <% if (user.categories.includes(category)) { %>
+          <option value="<%= category.toLowerCase() %>" selected ><%= category %></option>
+        <% } else { %>
+          <option value="<%= category.toLowerCase() %>" ><%= category %></option>
+        <% } %>
+    <% }) %>
   </select>
 <br>
 

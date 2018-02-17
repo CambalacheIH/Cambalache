@@ -21,6 +21,12 @@
   <input type="number" name="productMinPrice" value="<%= product.productMinPrice %>">
   maximum Price
   <input type="number" name="productMaxPrice" value="<%= product.productMaxPrice %>" >
+  category:
+  <select name="categories">
+    <% categories.forEach((category) =>{%>
+      <option value="<%= category.toLowerCase()%>" <%= product.categories == category ? 'selected' :''%>><%=category%></option>
+    <%})%>
+  </select>
 
   <% if (product.isNew) {%>
     photo

@@ -1,14 +1,14 @@
 module.exports = [
-'Fashion',
-'Sports',
-'Gaming',
-'Books',
-'Films',
-'Music',
-'Toys',
-'Photography',
-'Smartphones',
-'Electronics',
-'Hobbies',
-'Decoration'
+'fashion',
+'sports',
+'gaming',
+'books',
+'films',
+'music',
+'toys',
+'photography',
+'smartphones',
+'electronics',
+'hobbies',
+'decoration'
 ];
