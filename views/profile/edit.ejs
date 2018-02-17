@@ -13,29 +13,14 @@ Preferencias de búsqueda:
 Punto de recogida:
 <br>
 Categorías:
+
+  <select multiple="multiple" id="categories" name="categories[]">
+    <% categories.forEach((category) =>{%>
+      <option value="<%= category.toLowerCase()%>"><%=category%></option>
+    <%})%>
+  </select>
 <br>
-<label><input type="checkbox" name="">Ropa y accesorios</label>
-<br>
-<label><input type="checkbox" name="">Deporte y ocio</label>
-<br>
-<label><input type="checkbox" name="">Consolas y juegos</label>
-<br>
-<label><input type="checkbox" name="">Libros</label>
-<br>
-<label><input type="checkbox" name="">Películas</label>
-<br>
-<label><input type="checkbox" name="">Música</label>
-<br>
-<label><input type="checkbox" name="">Instrumentos</label>
-<br>
-<label><input type="checkbox" name="">Juguetes</label>
-<br>
-<label><input type="checkbox" name="">Fotografía</label>
-<br>
-<label><input type="checkbox" name="">Electrónica</label>
-<br>
-<label><input type="checkbox" name="">Electrodomésticos</label>
-<br>
+
 Rango de precios:
 
 <button type="submit">Save changes</button>
@@ -47,3 +32,5 @@ Rango de precios:
 <br><form action="/logout">
   <button type="submit">Logout</button>
 </form>
+
+<script src="/js/jquery.multi-select.js" type="text/javascript"></script>

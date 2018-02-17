@@ -3,6 +3,7 @@ const passport = require('passport');
 const User = require('../models/user.model');
 const Product = require ('../models/product.model');
 const path = require ('path');
+const CATEGORIES = require ('../models/categories-types');
 
 module.exports.index = (req, res, next) => {
   Product.find({'owner': req.user.id})
@@ -18,7 +19,10 @@ module.exports.index = (req, res, next) => {
 module.exports.editProfile = (req, res, next) => {
   User.findById(req.user.id)
     .then((user) => {
-      res.render('profile/edit', {user});
+      res.render('profile/edit', {
+        user: user,
+        categories: CATEGORIES
+      });
     })
     .catch (error => next());
 };
@@ -54,7 +58,7 @@ module.exports.createProduct = (req, res, next) => {
   if (req.file) {
     newProduct.productPhoto = `/photos/${req.file.filename}`;
   }
-  
+
   new Product(newProduct).save()
     .then((product) => {
       res.redirect('/profile');
