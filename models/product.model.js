@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const CATEGORIES = require ('./categories-types');
 
 const productSchema = new Schema({
   productName: {
@@ -27,6 +28,10 @@ const productSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  },
+  categories: {
+    type: String,
+    enum: CATEGORIES
   }
 }, {timestamps: true});
 

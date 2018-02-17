@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 const Schema = mongoose.Schema;
+const CATEGORIES = require ('./categories-types');
 
 const userSchema = new Schema({
   password: {
@@ -29,6 +30,11 @@ const userSchema = new Schema({
       ref: 'Product'
     }
   ],
+  categories: [
+    { type: String,
+      enum: CATEGORIES
+    }
+  ]
 }, {timestamps: true});
 
 userSchema.pre('save', function (next) {
