@@ -13,8 +13,7 @@ Preferencias de búsqueda:
 Punto de recogida:
 <br>
 
-Categorías:
-  <pre> <%= user.categories %></pre>
+Categorías:<br><br>
   <select multiple="multiple" id="categories" name="categories">
 
     <% categories.forEach((category) => { %>
@@ -27,7 +26,11 @@ Categorías:
   </select>
 <br>
 
-Rango de precios:
+Rango de precios: <br>
+Minimum price:
+<input type="number" name="minPrice" value="<%= user.minPrice %>">€<br>
+Maximum price:
+<input type="number" name="maxPrice" value="<%= user.maxPrice %>">€<br>
 
 <button type="submit">Save changes</button>
 <a href="/profile">Leave without changes</a>
