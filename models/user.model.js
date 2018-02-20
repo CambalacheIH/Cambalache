@@ -26,15 +26,23 @@ const userSchema = new Schema({
     type: String
   },
   products: [
-    {type: Schema.Types.ObjectId,
+    {
+      type: Schema.Types.ObjectId,
       ref: 'Product'
     }
   ],
   categories: [
-    { type: String,
+    { 
+      type: String,
       enum: CATEGORIES
     }
-  ]
+  ],
+  minPrice: {
+    type: Number
+  },
+  maxPrice: {
+    type: Number
+  } 
 }, {timestamps: true});
 
 userSchema.pre('save', function (next) {

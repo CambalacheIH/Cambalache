@@ -28,9 +28,9 @@ module.exports.editProfile = (req, res, next) => {
 };
 
 module.exports.updateProfile = (req, res, next) => {
-  const {name, surname, categories} = req.body;
+  const {name, surname, categories, minPrice, maxPrice} = req.body;
   console.log(req.body);
-  const updates = {name, surname, categories};
+  const updates = {name, surname, categories, minPrice, maxPrice};
   const userId = req.user.id;
   User.findByIdAndUpdate(userId, updates).then((user) => {
     res.redirect('/profile');
