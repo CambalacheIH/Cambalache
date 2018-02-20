@@ -1,0 +1,10 @@
+<% products.forEach((product) => { %>
+  <li>
+    <%= product.productName %> <br>
+    <%= product.productDescription %> <br>
+    <%= product.productMinPrice %> <br>
+    <%= product.productMaxPrice %> <br>
+    <%= product.categories %> <br>
+    <img src="<%= product.productPhoto%>">
+  </li>
+<% }) %>
