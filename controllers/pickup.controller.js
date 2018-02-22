@@ -10,12 +10,23 @@ module.exports.index = (req, res, next) => {
         pickups: pickups,
         path: req.path
       });
-    })
-}
+    });
+};
+
+module.exports.index = (req, res, next) => {
+  Pickup.find()
+    .then((pickups) => {
+      res.json('pickups/index', {
+        pickups: pickups,
+        path: req.path
+      });
+    });
+};
 
 module.exports.new = (req, res, next) => {
+  console.log('Hola');
   res.render('pickups/new');
-}
+};
 
 module.exports.create = (req, res, next) => {
   let newPickup = {

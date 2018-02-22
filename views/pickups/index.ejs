@@ -16,11 +16,10 @@
 </script>
 
 <!-- Google Maps -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACXj5MT5dfwSpf5PFu3hoVOIGdSopWBjM&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGQ2xG2TpubQMaQVY8RJ8QzrzTuhn33so&callback=initMap"></script>
+<script type="text/javascript">
 
 <% pickups.forEach((pickup) => { %>
-
-  <script type="text/javascript">
     new google.maps.Marker({
       position: {
         lat: <%= pickup.location.coordinates[0] %>,
@@ -28,5 +27,5 @@
       },
       map: map
     });
-  </script>
 <%})%>
+</script>
