@@ -18,6 +18,7 @@ const auth = require('./routes/auth.routes');
 const profile = require('./routes/profile.routes');
 const pickup = require('./routes/pickup.routes');
 const search = require('./routes/search.routes');
+const match = require('./routes/match.routes');
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.use('/', auth);
 app.use('/profile', profile);
 app.use('/pickups', pickup);
 app.use('/search', search);
+app.use('/match', match);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
