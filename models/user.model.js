@@ -32,7 +32,7 @@ const userSchema = new Schema({
     }
   ],
   categories: [
-    { 
+    {
       type: String,
       enum: CATEGORIES
     }
@@ -42,7 +42,10 @@ const userSchema = new Schema({
   },
   maxPrice: {
     type: Number
-  } 
+  },
+  facebookID: {
+    type:String,
+  }
 }, {timestamps: true});
 
 userSchema.pre('save', function (next) {
