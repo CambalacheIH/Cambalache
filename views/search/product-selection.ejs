@@ -1,0 +1,14 @@
+Product name: <%= product.productName %><br>
+Description: <%= product.productDescription %><br>
+Minimum price: <%= product.productMinPrice %><br>
+Maximum price: <%= product.productMaxPrice %><br><br><br>
+
+Your products: <br>
+<ul>
+  <% userProducts.forEach((userProduct) => { %>
+    <li>
+      Product name: <%= userProduct.productName %>
+      <a href="/match/<%= product._id %>/<%= userProduct._id %>">Create the exchange</a>
+    </li>
+  <% }) %>
+</ul>

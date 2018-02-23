@@ -20,3 +20,19 @@ module.exports.filter = (req, res, next) => {
       });
     });
 };
+
+module.exports.newExchange = (req, res, next) => {
+  Product.findById(req.params.id)
+    .then((product) => {
+      Product.find({'owner': req.user.id})
+        .then((userProducts) => {
+          console.log(userProducts);
+          res.render('search/product-selection', {
+            product: product,
+            userProducts: userProducts
+          });
+        })
+        .catch (error => next());
+    })
+    .catch (error => next ());
+}
