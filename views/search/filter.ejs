@@ -1,10 +1,15 @@
-<% products.forEach((product) => { %>
+<% if(products.length > 0) { %>
+  <% products.forEach((product) => { %>
   <li>
     <%= product.productName %> <br>
     <%= product.productDescription %> <br>
     <%= product.productMinPrice %> <br>
     <%= product.productMaxPrice %> <br>
     <%= product.categories %> <br>
-    <img src="<%= product.productPhoto%>">
+    <img src="<%= product.productPhoto%>"><br>
+    <a href="/search/<%= product._id %>">I like it</a>
   </li>
 <% }) %>
+<% } else { %>
+  <p>No products available with your preferences, try another search</p>
+<% } %>
