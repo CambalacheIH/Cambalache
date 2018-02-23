@@ -9,6 +9,7 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
+const FbStrategy = require('passport-facebook').Strategy;
 
 require('./configs/db.config');
 require('./configs/passport.config').setup(passport);

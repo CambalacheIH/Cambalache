@@ -7,20 +7,20 @@ const CATEGORIES = require ('./categories-types');
 const userSchema = new Schema({
   password: {
     type: String,
-    required: [true, 'Password is required'],
+  //  required: [true, 'Password is required'],
     minlength: 6,
     maxlength: 16
   },
   email: {
     type: String,
     lowercase: true,
-    required: [true, 'Email is required'],
+  //  required: [true, 'Email is required'],
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
     unique: true
   },
   name: {
     type: String,
-    required: [true, 'A name is required']
+  //  required: [true, 'A name is required']
   },
   surname: {
     type: String
@@ -32,7 +32,7 @@ const userSchema = new Schema({
     }
   ],
   categories: [
-    { 
+    {
       type: String,
       enum: CATEGORIES
     }
@@ -42,7 +42,10 @@ const userSchema = new Schema({
   },
   maxPrice: {
     type: Number
-  } 
+  },
+  facebookID: {
+    type:String,
+  }
 }, {timestamps: true});
 
 userSchema.pre('save', function (next) {

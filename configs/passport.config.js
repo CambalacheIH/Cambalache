@@ -1,5 +1,6 @@
 const User = require('../models/user.model');
 const LocalStrategy = require('passport-local').Strategy;
+const FbStrategy = require('passport-facebook').Strategy;
 
 module.exports.setup = (passport) => {
 
@@ -36,6 +37,34 @@ module.exports.setup = (passport) => {
         }
       })
       .catch(error => next(error));
+  }));
+  passport.use(new FbStrategy({
+    clientID: "416395515480415",
+    clientSecret: "88caff9cdb68281c9d0d31ad2edaa366",
+    callbackURL: "/auth/facebook/callback",
+    profileFields: ['id','name','email']
+  }, (accessToken, refreshToken, profile, done) => {
+console.log(profile);
+    User.findOne({ facebookID: profile.id }, (err, user) => {
+      if (err) {
+        return done(err);
+      }
+      if (user) {
+        return done(null, user);
+      }
+
+      const newUser = new User({
+        facebookID: profile.id
+      });
+
+      newUser.save((err) => {
+        if (err) {
+          return done(err);
+        }
+        done(null, newUser);
+      });
+    });
+
   }));
 
 };
