@@ -44,7 +44,6 @@ module.exports.setup = (passport) => {
     callbackURL: "/auth/facebook/callback",
     profileFields: ['id','name','email']
   }, (accessToken, refreshToken, profile, done) => {
-console.log(profile);
     User.findOne({ facebookID: profile.id }, (err, user) => {
       if (err) {
         return done(err);
@@ -54,7 +53,10 @@ console.log(profile);
       }
 
       const newUser = new User({
-        facebookID: profile.id
+        facebookID: profile.id,
+        email: profile._json.email,
+        name: profile._json.first_name,
+        password: Math.random().toString(36).substring(7)
       });
 
       newUser.save((err) => {

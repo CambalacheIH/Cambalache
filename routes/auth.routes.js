@@ -12,7 +12,10 @@ router.post('/login', secure.nonAuthenticated, authController.doLogin);
 
 router.get('/logout', secure.isAuthenticated, authController.logout);
 
-router.get("/auth/facebook", passport.authenticate("facebook"));
+router.get("/auth/facebook", passport.authenticate(
+  "facebook",
+  { scope : ['email']}
+));
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
   successRedirect: "/profile",
   failureRedirect: "/"
