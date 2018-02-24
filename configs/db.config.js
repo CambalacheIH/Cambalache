@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const DB_NAME = 'cambalache';
-const MONGODB_URI = `mongodb://localhost/${DB_NAME}`;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI)
@@ -9,4 +9,4 @@ mongoose.connect(MONGODB_URI)
     })
     .catch(error => {
         console.error(`Unable to connect to db ${DB_NAME}: ${error}`);
-    })
+    });
