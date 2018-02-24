@@ -1,11 +1,14 @@
 const User = require('../models/user.model');
 const LocalStrategy = require('passport-local').Strategy;
 const FbStrategy = require('passport-facebook').Strategy;
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const FB_CLIENT_ID = process.env.FB_CLIENT_ID || '';
 const FB_CLIENT_SECRET = process.env.FB_CLIENT_SECRET || '';
-const FB_CB = '';
+const FB_CB = '/auth/facebook/callback';
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || '';
+const GOOGLE_CB = '/auth/google/callback';
 
 module.exports.setup = (passport) => {
 
@@ -44,16 +47,16 @@ module.exports.setup = (passport) => {
       .catch(error => next(error));
   }));
   passport.use('facebook-auth', new FbStrategy({
-    clientID: "416395515480415",
-    clientSecret: "88caff9cdb68281c9d0d31ad2edaa366",
-    callbackURL: "/auth/facebook/callback",
+    clientID: FB_CLIENT_ID,
+    clientSecret: FB_CLIENT_SECRET,
+    callbackURL: FB_CB,
     profileFields: ['id','displayName','email']
   }, providerCallback));
 
   passport.use('google-auth', new GoogleStrategy({
-    clientID: "1045344661519-oidp512rapi5qscvuvffgjo9kh3rk4l4.apps.googleusercontent.com",
-    clientSecret: "kPL43k1kkLDP37CS0seIkpRE",
-    callbackURL: "/auth/google/callback"
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: GOOGLE_CB
   }, providerCallback));
 
   function providerCallback(accessToken, refreshToken, profile, next) {
@@ -84,6 +87,6 @@ module.exports.setup = (passport) => {
         }
       })
       .catch(error => next(error));
-  };
+  }
 
 };
