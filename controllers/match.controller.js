@@ -14,11 +14,21 @@ module.exports.newRoom = (req, res, next) => {
     .populate('firstProductOwner')
     .populate('secondProductOwner')
     .then(match => {
+
       if (match != undefined) {
-        res.render('match/match-room', {
-          match: match,
-          user: req.user.id
-        })
+        if (match.firstProductOwnerAccept === true & match.secondProductOwnerAccept === true) {
+          Product.remove({ _id: { $in: [firstProductId, secondProductId] }})
+            .then (() => {
+              res.redirect('/profile');
+          })
+        } else if (match.rejected === true) {
+          res.redirect('/profile')
+        } else {
+          res.render('match/match-room', {
+            match: match,
+            user: req.user.id
+          })
+        } 
       } else {
         Product.findById(firstProductId)
           .populate('owner')
@@ -43,7 +53,7 @@ module.exports.newRoom = (req, res, next) => {
                   })
               });
           });
-        }
+      }
     })
     .catch (error => next());
 };
@@ -66,3 +76,16 @@ module.exports.accept = (req, res, next) => {
     })
     .catch(error => next());
 };
+
+module.exports.reject = (req, res, next) => {
+  const firstProductId = req.params.firstProduct;
+  const secondProductId = req.params.secondProduct;
+
+  Match.findOne({'combination': firstProductId+secondProductId})
+    .then(match => {
+      match.rejected = true
+      match.save();
+      res.redirect('/profile');
+    })
+    .catch(error => next());
+}

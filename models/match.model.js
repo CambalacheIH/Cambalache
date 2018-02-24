@@ -30,6 +30,10 @@ const matchSchema = new Schema({
     type: Boolean,
     default: false
   },
+  rejected: {
+    type: Boolean,
+    default: false
+  },
   combination: {
     type: String,
     required: true
