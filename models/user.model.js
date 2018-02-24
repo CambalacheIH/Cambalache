@@ -44,7 +44,10 @@ const userSchema = new Schema({
     type: Number
   },
   facebookID: {
-    type:String,
+    type: String,
+  },
+  googleID: {
+    type: String,
   }
 }, {timestamps: true});
 
