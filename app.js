@@ -10,6 +10,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
 const FbStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 require('./configs/db.config');
 require('./configs/passport.config').setup(passport);
