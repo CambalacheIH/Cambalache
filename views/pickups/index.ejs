@@ -2,24 +2,25 @@
 <div id="map" style="width:800px; height:500px"></div>
 <a href="/pickups/new">Create a new pickup point</a>
 
+
+
 <script type="text/javascript">
   var map;
-  var currentMarker;
 
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 40.392694, lng: -3.698421},
-      zoom: 14,
-      fullscreenControl: false
+      zoom: 12,
     });
   }
 </script>
 
 <!-- Google Maps -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGQ2xG2TpubQMaQVY8RJ8QzrzTuhn33so&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJf0SFMueAL09OaMq4QHvqlLiSOTTkDZA&callback=initMap"></script>
+
 <script type="text/javascript">
 
-<% pickups.forEach((pickup) => { %>
+ <% pickups.forEach((pickup) => { %>
     new google.maps.Marker({
       position: {
         lat: <%= pickup.location.coordinates[0] %>,
@@ -29,3 +30,35 @@
     });
 <%})%>
 </script>
+
+<% if(pickups.length > 0) { %>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Open hour</th>
+      <th>Close hour</th>
+      <th>Lat</th>
+      <th>Lng</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pickups.forEach((pickup) => { %>
+      <tr>
+        <td><%= pickup.name %></td>
+        <td><%= pickup.openHour %></td>
+        <td><%= pickup.closeHour %></td>
+        <td><%= pickup.location.coordinates[0] %></td>
+        <td><%= pickup.location.coordinates[1] %></td>
+        <td>
+          <form action="/pickups/<%= pickup._id %>/delete" method="post">
+            <input type="submit" value="Delete" class="Delete">
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<% } else { %>
+  <div class="alert alert-warning" role="alert">No pickup points!</div>
+<% } %>

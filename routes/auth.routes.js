@@ -21,14 +21,15 @@ router.get("/auth/facebook/callback", passport.authenticate("facebook-auth", {
   failureRedirect: "/"
 }));
 
-router.get("/auth/google", passport.authenticate("google-auth", {
-  scope: ["https://www.googleapis.com/auth/plus.login",
+router.get("/auth/google", passport.authenticate(
+  "google-auth",
+  { scope: ["https://www.googleapis.com/auth/plus.login",
           "https://www.googleapis.com/auth/plus.profile.emails.read"]
 }));
 
 router.get("/auth/google/callback", passport.authenticate("google-auth", {
-  failureRedirect: "/profile",
-  successRedirect: "/"
+  failureRedirect: "/",
+  successRedirect: "/profile"
 }));
 
 module.exports = router;

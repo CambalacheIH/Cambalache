@@ -22,7 +22,7 @@ Hola <%= user.name %> <%= user.surname %> <a href="/profile/<%= user._id %>">Edi
       <%= product.productMinPrice %> <br>
       <%= product.productMaxPrice %> <br>
       <%= product.categories %> <br>
-      <img src="<%= product.productPhoto%>">
+      <img class="product-img" src="<%= product.productPhoto%>">
       <a href="/profile/products/<%= product._id %>"> Editar</a> <br>
       <form action="profile/products/delete/<%= product._id %>" method="Post">
         <input type="submit" value="delete">

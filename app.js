@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -14,6 +15,7 @@ const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 require('./configs/db.config');
 require('./configs/passport.config').setup(passport);
+
 
 const home = require('./routes/home.routes');
 const auth = require('./routes/auth.routes');

@@ -15,7 +15,13 @@
   <input type="submit" value="Create pickup point">
 </form>
 
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJf0SFMueAL09OaMq4QHvqlLiSOTTkDZA&callback=initMap"
+async defer>
+</script>
+
 <script type="text/javascript">
+
   var map;
   var currentMarker;
 
@@ -33,8 +39,8 @@
     map.addListener('click', function(event) {
       if (currentMarker != undefined) {
         currentMarker.setMap(null);
-      } 
-      
+      }
+
       addMarker(event.latLng.toJSON());
 
       document.getElementById('latitude').value = currentMarker.position.lat();
@@ -49,7 +55,3 @@
     });
   }
 </script>
-
-<!-- Google Maps -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACXj5MT5dfwSpf5PFu3hoVOIGdSopWBjM&callback=initMap"
-async defer></script>
