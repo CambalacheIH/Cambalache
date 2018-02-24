@@ -1,7 +1,4 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
 
 a {
   color: #00B7FF;
@@ -9,4 +6,116 @@ a {
 
 .product-img {
   max-height: 200px;
+}
+
+html {
+  font-family: 'Montserrat', sans-serif;
+  color: #333333;
+}
+
+/* buttons */
+
+.btn-config {
+  border-radius: 100px;
+  cursor: pointer !important;
+}
+.btn-cambalache {
+  background-color: #fa6484;
+}
+.btn-cambalache:hover {
+  background-color: #fda59d;
+}
+.btn-google {
+  background-color: #dd4b39;
+}
+.btn-google:hover {
+  background: #c23321;
+}
+.btn-facebook {
+  background-color: #3b5998;
+}
+.btn-facebook:hover {
+  background: #2d4373;
+}
+
+/* Footer */
+
+.page-footer {
+  padding-top: 0;
+  text-align: center;
+  background-image: linear-gradient(112deg, #fda59d, #fa6484);
+}
+
+/* Navbar */
+
+.brand-logo img {
+  height: 60px;
+}
+.main-navbar {
+  background-image: linear-gradient(112deg, #fda59d, #fa6484);
+  box-shadow: none;
+  height: 60px;
+}
+.main-navbar ul a {
+  height: 60px;
+  line-height: 60px;
+  background-color: transparent !important;
+  transition: color 0.3s ease;
+}
+.main-navbar ul a:hover {
+  color: #ccc;
+}
+
+/* Home */
+
+.home {
+  width: 100%;
+}
+.home-img {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.overlay {
+  background-color: rgba(30, 30, 30, 0.6);
+  height: calc(100vh - 60px);
+  width: 100%;
+  position: relative
+}
+.overlay .container {
+  height: calc(100vh - 60px);
+  position: relative;
+}
+.overlay .info-home {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+.overlay h1 {
+  margin: 0;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+/* Form */
+
+#login .btn-google {
+  margin: 15px 0;
+}
+#login button {
+  width: 100%;
+}
+#login {
+  width: 30%;
+}
+.input-field label, .input-field input[type=text]:focus + label, .input-field input[type=text]:focus {
+  color: #fa6484 !important;
+}
+.submit-container {
+  text-align: center;
 }

@@ -32,4 +32,5 @@ npm-debug.log
 # google + fb ids
 .env
 
+#DS Store
 .DS_Store
