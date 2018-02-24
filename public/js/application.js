@@ -9,5 +9,4 @@
 
 $(document).ready(function(){
   $('.modal').modal();
-  $('#login').modal('open');
 });
