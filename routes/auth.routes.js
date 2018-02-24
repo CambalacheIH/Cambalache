@@ -13,12 +13,22 @@ router.post('/login', secure.nonAuthenticated, authController.doLogin);
 router.get('/logout', secure.isAuthenticated, authController.logout);
 
 router.get("/auth/facebook", passport.authenticate(
-  "facebook",
+  "facebook-auth",
   { scope : ['email']}
 ));
-router.get("/auth/facebook/callback", passport.authenticate("facebook", {
+router.get("/auth/facebook/callback", passport.authenticate("facebook-auth", {
   successRedirect: "/profile",
   failureRedirect: "/"
+}));
+
+router.get("/auth/google", passport.authenticate("google-auth", {
+  scope: ["https://www.googleapis.com/auth/plus.login",
+          "https://www.googleapis.com/auth/plus.profile.emails.read"]
+}));
+
+router.get("/auth/google/callback", passport.authenticate("google-auth", {
+  failureRedirect: "/profile",
+  successRedirect: "/"
 }));
 
 module.exports = router;
