@@ -2,9 +2,30 @@
 
 <%= match.firstProductId.productName %><br>
 <%= match.firstProductOwner.name %><br>
-<%= match.firstProductOwner.email %><br><br>
+<%= match.firstProductOwner.email %><br>
+
+<br><br>
 
 <b>Second product</b><br>
 
 <%= match.secondProductId.productName %><br>
-<%= match.secondProductOwner.name %>
+<%= match.secondProductOwner.name %><br><br>
+
+<% if (match.firstProductOwnerAccept === false & match.secondProductOwnerAccept === false) { %>
+  <%= match.firstProductOwner.name %> and <%= match.secondProductOwner.name %> has not accepted yet
+<% } else if (match.firstProductOwnerAccept === true & match.secondProductOwnerAccept === false){ %>
+  <%= match.firstProductOwner.name %> has accepted the trade
+<% } else if (match.firstProductOwnerAccept === false & match.secondProductOwnerAccept === true){ %>
+  <%= match.secondProductOwner.name %> has accepted the trade
+<% } %>
+<br>
+<% if (user === match.firstProductOwner.id) { %>
+  Botón para el primer usuario
+<% } %>
+<% if (user === match.secondProductOwner.id) { %>
+  Botón para el segundo usuario
+<% } %>
+
+<form action="/match/<%= match.firstProductId.id %>/<%= match.secondProductId.id %>/accept" method="POST">
+  <input type="submit" value="Accept">
+</form>
