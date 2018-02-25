@@ -1,9 +1,23 @@
 const multer = require('multer');
 const path = require('path');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const CLOUDINARY_KEY = process.env.CLOUDINARY_KEY;
+const CLOUDINARY_SECRET = process.env.CLOUDINARY_SECRET;
 
-const storage = multer.diskStorage({
-  destination: (req, file, next) => {
-    next(null, './public/photos');
+//cloudinary.image("product-photo/product-photo.png")
+cloudinary.config({
+  cloud_name: 'de8s9nyn0',
+  api_key: CLOUDINARY_KEY, 
+  api_secret: CLOUDINARY_SECRET
+});
+
+const storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: 'product-photo',
+  allowedFormats: ['jpg', 'png', 'jpeg', 'gif'],
+  filename: (req, file, next) => {
+    next(undefined, 'product-photo');
   }
 });
 
