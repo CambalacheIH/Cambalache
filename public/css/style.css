@@ -107,10 +107,10 @@ html {
 #login .btn-google {
   margin: 15px 0;
 }
-#login button {
+.login button {
   width: 100%;
 }
-#login {
+.login {
   width: 30%;
 }
 .input-field label, .input-field input[type=text]:focus + label, .input-field input[type=text]:focus {
