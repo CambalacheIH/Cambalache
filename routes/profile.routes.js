@@ -10,7 +10,7 @@ router.post('/products', secure.isAuthenticated, upload.single('pic'), profileCo
 router.get('/:id', secure.isAuthenticated, secure.isUser, profileController.editProfile);
 router.post('/:id', secure.isAuthenticated, secure.isUser, profileController.updateProfile);
 
-//router.get to see te picture
+//router.get to see the picture
 router.get('/products/new', secure.isAuthenticated, profileController.newProduct);
 
 router.post('/products/delete/:id', secure.isAuthenticated, secure.isUserOwner, profileController.deleteProduct);
