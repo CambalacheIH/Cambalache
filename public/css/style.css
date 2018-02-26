@@ -14,6 +14,7 @@ body {
   border-radius: 100px;
   cursor: pointer !important;
   display: flex;
+  justify-content: center;
 }
 .btn-cambalache {
   background-color: #fa6484;
@@ -58,6 +59,9 @@ body {
 /* Navbar */
 
 .brand-logo img {
+  height: 60px;
+}
+.navbar-fixed {
   height: 60px;
 }
 .main-navbar {
@@ -118,15 +122,26 @@ body {
 }
 .login button {
   width: 100%;
-}/*
-.login {
-  width: 30%;
-}*/
+}
+.modal.login {
+  max-height: 100%;
+}
 .input-field label, .input-field input[type=text]:focus + label, .input-field input[type=text]:focus {
   color: #fa6484 !important;
 }
 .submit-container {
   text-align: center;
+}
+@media only screen and (min-width: 601px) {
+  .login {
+    width: 30%;
+  }
+}
+
+.login-view, .signup-view {
+  padding: 40px;
+  background-color: #fff;
+  min-height: calc(100vh - 60px);
 }
 
 /* Profile */

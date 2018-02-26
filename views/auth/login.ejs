@@ -1,7 +1,47 @@
-<form action="/login" method="POST">
-  Email:
-  <input type="email" name="email">
-  Password:
-  <input type="password" name="password">
-  <button type="submit">Login</button>
-</form>
+<div class="container login-view login" id="login">
+  <h4>Login</h4>
+  <div class="row">
+    <form action="/login" method="POST" class="col s12">
+      <% if (typeof(error) != 'undefined' && error.password) { %>
+        <p><%= error.password %></p>
+      <% } %>
+      <p></p>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" name="email" class="validate" required>
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" name="password" class="validate" required>
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 submit-container">
+          <button class="btn btn-cambalache btn-config" type="submit" name="action">
+            <i class="material-icons left">send</i>Submit
+          </button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col s12 submit-container">
+          <button class="btn btn-google btn-config" type="submit" name="action">
+            <i class="fa fa-google left" aria-hidden="true"></i>Log in with Google
+          </button>
+          <button class="btn btn-facebook btn-config" type="submit" name="action">
+            <i class="fa fa-facebook left" aria-hidden="true"></i>Log in with Facebook
+          </button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col s12">
+          <p>Do yo prefer to sign up with your email? <a href="/signup" class="modal-trigger modal-close">Go here</a></p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
