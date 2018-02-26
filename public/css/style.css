@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
 
-a {
-  color: #00B7FF;
-}
-
 .product-img {
   max-height: 200px;
 }
@@ -18,6 +14,7 @@ html {
 .btn-config {
   border-radius: 100px;
   cursor: pointer !important;
+  display: flex;
 }
 .btn-cambalache {
   background-color: #fa6484;
@@ -36,6 +33,16 @@ html {
 }
 .btn-facebook:hover {
   background: #2d4373;
+}
+.btn-edit {
+  text-transform: unset !important;
+}
+.delete-product-btn input {
+  background-color: transparent;
+  border: none;
+}
+.delete-product-btn i {
+  color: #e53935;
 }
 
 /* Footer */
@@ -109,13 +116,30 @@ html {
 }
 .login button {
   width: 100%;
-}
+}/*
 .login {
   width: 30%;
-}
+}*/
 .input-field label, .input-field input[type=text]:focus + label, .input-field input[type=text]:focus {
   color: #fa6484 !important;
 }
 .submit-container {
   text-align: center;
+}
+
+/* Profile */
+
+.left-info {
+  background-color: #90a4ae;
+  height: calc(100vh - 60px);
+  min-height: 100%;
+}
+.profile .right-info {
+  padding: 40px;
+}
+.profile .products .card-image {
+  overflow: hidden !important;
+}
+.profile .products .card-image img{
+  max-width: none;
 }

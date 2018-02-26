@@ -1,12 +1,14 @@
 <nav class="main-navbar">
   <div class="nav-wrapper">
-    <a href="/" class="brand-logo"><img src="/img/cambalache-logo.png" /></a>
-    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-    <ul class="right hide-on-med-and-down">
-      <li><a class="modal-trigger" href="#login"><i class="material-icons left">exit_to_app</i>Log in / Sign up</a></li>
-    </ul>
-    <ul class="side-nav" id="mobile">
-      <li><a href="#login">Log in / Sign up</a></li>
+    <a href="/" class="brand-logo left"><img src="/img/cambalache-logo.png" /></a>
+    <ul class="right">
+      <% if (session.email) { %>
+        <li>
+          <a class="modal-trigger" href="/logout"><i class="material-icons left">exit_to_app</i>Log out</a>
+        </li>
+      <% } else { %>
+        <li><a class="modal-trigger" href="#login"><i class="material-icons left">exit_to_app</i>Log in / Sign up</a></li>
+      <% } %>
     </ul>
   </div>
 </nav>

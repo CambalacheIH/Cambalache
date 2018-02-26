@@ -1,4 +1,44 @@
-Hola <%= user.name %> <%= user.surname %> <a href="/profile/<%= user._id %>">Editar</a>
+<div class="row profile">
+  <div class="col s3 left-info">
+  
+  </div>
+  <div class="col s9 right-info">
+    <div class="row">
+      <h4 class="left">Your products:</h2>
+      <a href="/profile/products/new" class="btn-large btn-config btn-cambalache right"><i class="material-icons">add</i>Add a new product</a>
+    </div>
+    <% products.forEach((product) => { %>
+      <div class="col s12 products">
+        <div class="card horizontal hoverable small">
+          <div class="card-image">
+            <img src="<%= product.productPhoto%>">
+            <span class="card-title"><%= product.productName %></span>
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p><%= product.productDescription %></p><br>
+              <div class="divider"></div><br>
+              <p><b>Minimum price:</b> <%= product.productMinPrice %>€</p>
+              <p><b>Maximum price:</b> <%= product.productMaxPrice %>€</p>
+              <p><b>Category:</b> <%= product.categories %></p>
+            </div>
+            <div class="card-action">
+              <a href="/profile/products/<%= product._id %>" class="btn-config btn-edit btn-icon-white right"><i class="material-icons">create</i>Edit</a>
+              <form action="profile/products/delete/<%= product._id %>" method="POST" class="right delete-product-btn">
+                <label>
+                  <i class="material-icons">create</i>
+                  <input id="delete" type="submit" value="Delete">
+                </label>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<!--Hola <%= user.name %> <%= user.surname %> <a href="/profile/<%= user._id %>">Editar</a>
 <a href="/search">Find products</a>
 <hr>
 <hr>
@@ -32,4 +72,4 @@ Hola <%= user.name %> <%= user.surname %> <a href="/profile/<%= user._id %>">Edi
 </ul>
 <% } else { %>
   <p>No products available</p>
-<% } %>
+<% } %>-->
