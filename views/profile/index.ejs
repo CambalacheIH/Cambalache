@@ -8,7 +8,12 @@
       <p><b>Minimum price:</b> <%= user.minPrice %>€</p>
       <p><b>Maximum price:</b> <%= user.maxPrice %>€</p>
       <p><b>Categories:</b></p>
-      <a href="/profile/<%= user._id %>" class="btn btn-config btn-cambalache left"><i class="material-icons">create</i>Edit</a>
+      <% user.categories.forEach((category) => { %>
+        <div class="chip">
+          <%= category %>
+        </div>
+      <% }) %>
+      <a href="/profile/<%= user._id %>" class="btn btn-config btn-cambalache left btn-edit-profile"><i class="material-icons">create</i>Edit</a>
       <a href="/search" class="btn btn-config btn-cambalache left"><i class="material-icons">search</i>Find products</a>
     </div>
   </div>
@@ -29,8 +34,10 @@
               <p><%= product.productDescription %><p>
             </div>
             <div class="card-action">
-              <a href="#">Editar</a>
-              <a href="#">Borrar</a>
+              <form action="profile/products/delete/<%= product._id %>" method="POST" class="right">
+                <input type="submit" value="delete" class="btn btn-delete">
+              </form>
+              <a href="#" class="btn right btn-edit">Edit</a>
             </div>
           </div>
         </div>

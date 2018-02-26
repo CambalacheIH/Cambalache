@@ -8,6 +8,9 @@ html {
   font-family: 'Montserrat', sans-serif;
   color: #333333;
 }
+body {
+  background-color: rgba(236,239,241,.6);
+}
 
 /* buttons */
 
@@ -34,15 +37,15 @@ html {
 .btn-facebook:hover {
   background: #2d4373;
 }
-.btn-edit {
-  text-transform: unset !important;
+.btn-delete {
+  background-color: #DC2222;
+  margin-left: 10px;
 }
-.delete-product-btn input {
-  background-color: transparent;
-  border: none;
+.btn-delete:hover {
+  background-color: #F33737;
 }
-.delete-product-btn i {
-  color: #e53935;
+.btn-edit-profile {
+  margin: 10px 0;
 }
 
 /* Footer */
@@ -130,7 +133,7 @@ html {
 /* Profile */
 
 .left-info {
-  background-color: #90a4ae;
+  background-color: #33356C;
   height: calc(100vh - 60px);
   position: fixed;
   top: 60px;
@@ -141,12 +144,19 @@ html {
 .profile .right-info, .profile .left-info {
   padding: 40px;
 }
-.right-info {
-  background-color: rgba(236,239,241,.6);
-}
 .profile .products .card-image {
   overflow: hidden !important;
 }
 .profile .products .card-image img{
   max-width: none;
+}
+
+/* Profile edit */
+
+.profile-edit .input-field.col .dropdown-content [type="checkbox"] + label {
+  top: -8px;
+}
+.leave-changes {
+  margin-top: 20px;
+  display: block;
 }
