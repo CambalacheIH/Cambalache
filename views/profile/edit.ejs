@@ -15,7 +15,7 @@
       <h3>Edit your filter preferences</h3>
       <div class="row">
         <div class="input-field col s12">
-          <select multiple>
+          <select name="categories" multiple>
             <% categories.forEach((category) => { %>
               <% if (user.categories.includes(category)) { %>
                 <option value="<%= category.toLowerCase() %>" selected ><%= category %></option>

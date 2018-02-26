@@ -9,6 +9,7 @@ module.exports.index = (req, res, next) => {
   Product.find({'owner': req.user.id})
     .then((products) => {
       res.render('profile/index', {
+        categories: req.user.categories || [],
         products: products,
         user: req.user,
         path: req.path
