@@ -132,10 +132,17 @@ html {
 .left-info {
   background-color: #90a4ae;
   height: calc(100vh - 60px);
-  min-height: 100%;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  color: #fff;
+  overflow-y: auto;
 }
-.profile .right-info {
+.profile .right-info, .profile .left-info {
   padding: 40px;
+}
+.right-info {
+  background-color: rgba(236,239,241,.6);
 }
 .profile .products .card-image {
   overflow: hidden !important;

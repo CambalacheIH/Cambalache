@@ -1,14 +1,16 @@
-<nav class="main-navbar">
-  <div class="nav-wrapper">
-    <a href="/" class="brand-logo left"><img src="/img/cambalache-logo.png" /></a>
-    <ul class="right">
-      <% if (session.email) { %>
-        <li>
-          <a class="modal-trigger" href="/logout"><i class="material-icons left">exit_to_app</i>Log out</a>
-        </li>
-      <% } else { %>
-        <li><a class="modal-trigger" href="#login"><i class="material-icons left">exit_to_app</i>Log in / Sign up</a></li>
-      <% } %>
-    </ul>
-  </div>
-</nav>
+<div class="navbar-fixed">
+  <nav class="main-navbar">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo left"><img src="/img/cambalache-logo.png" /></a>
+      <ul class="right">
+        <% if (session.email) { %>
+          <li>
+            <a class="modal-trigger" href="/logout"><i class="material-icons left">exit_to_app</i>Log out</a>
+          </li>
+        <% } else { %>
+          <li><a class="modal-trigger" href="#login"><i class="material-icons left">exit_to_app</i>Log in / Sign up</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+</div>
