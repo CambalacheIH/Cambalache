@@ -29,7 +29,6 @@ module.exports.editProfile = (req, res, next) => {
 
 module.exports.updateProfile = (req, res, next) => {
   const {name, surname, categories, minPrice, maxPrice} = req.body;
-  console.log(req.body);
   const updates = {name, surname, categories, minPrice, maxPrice};
   const userId = req.user.id;
   User.findByIdAndUpdate(userId, updates).then((user) => {
@@ -47,7 +46,6 @@ module.exports.newProduct = (req, res, next) => {
 
 module.exports.createProduct = (req, res, next) => {
   const userId = req.user.id;
-
   let newProduct = {
     productName: req.body.productName,
     productDescription: req.body.productDescription,
@@ -59,23 +57,21 @@ module.exports.createProduct = (req, res, next) => {
   };
 
   if (req.file) {
-    newProduct.productPhoto = `/photos/${req.file.filename}`;
+    newProduct.productPhoto = req.file.secure_url;
   }
 
   new Product(newProduct).save()
     .then((product) => {
       res.redirect('/profile');
-      console.log(req.body);
     })
     .catch((error) => {
-      console.log(error.message);
+      console.log(`error trying to create product ${error.message}`);
       res.render('profile/products/new', {
         product: new Product(),
         message: error.errors.productPhoto,
         path: req.path,
         categories: CATEGORIES
       });
-      console.log(req.body);
   });
 
 };
