@@ -13,6 +13,7 @@
           <%= category %>
         </div>
       <% }) %>
+      <br>
       <a href="/profile/<%= user._id %>" class="btn btn-config btn-cambalache left btn-edit-profile"><i class="material-icons">create</i>Edit</a>
       <a href="/search" class="btn btn-config btn-cambalache left"><i class="material-icons">search</i>Find products</a>
     </div>
@@ -24,7 +25,7 @@
     </div>
     <div class="row">
       <% products.forEach((product) => { %>
-        <div class="col s12 m6 products">
+        <div class="col s12 m4 products">
           <div class="card sticky-action hoverable large">
             <div class="card-image">
               <img src="<%= product.productPhoto%>">
@@ -37,7 +38,7 @@
               <form action="profile/products/delete/<%= product._id %>" method="POST" class="right">
                 <input type="submit" value="delete" class="btn btn-delete">
               </form>
-              <a href="#" class="btn right btn-edit">Edit</a>
+              <a href="/profile/products/<%= product._id %>" class="btn right btn-edit">Edit</a>
             </div>
           </div>
         </div>

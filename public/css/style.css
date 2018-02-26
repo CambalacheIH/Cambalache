@@ -1,12 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
 
-.product-img {
-  max-height: 200px;
-}
-
 html {
   font-family: 'Montserrat', sans-serif;
-  color: #333333;
+  color: #555;
 }
 body {
   background-color: rgba(236,239,241,.6);
@@ -37,15 +33,18 @@ body {
 .btn-facebook:hover {
   background: #2d4373;
 }
-.btn-delete {
+.btn-delete, .btn-like {
   background-color: #DC2222;
   margin-left: 10px;
 }
-.btn-delete:hover {
+.btn-delete:hover, .btn-like:hover {
   background-color: #F33737;
 }
 .btn-edit-profile {
   margin: 10px 0;
+}
+.btn-like {
+  justify-content: center;
 }
 
 /* Footer */
@@ -133,7 +132,7 @@ body {
 /* Profile */
 
 .left-info {
-  background-color: #33356C;
+  background-color: #282668;
   height: calc(100vh - 60px);
   position: fixed;
   top: 60px;
@@ -159,4 +158,28 @@ body {
 .leave-changes {
   margin-top: 20px;
   display: block;
+}
+
+/* Selection product */
+
+.product-selection .product-selected {
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+.product-selection .product-img {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.product-selection .product-img img {
+  max-width: max-content;
+  height: 100%;
+}
+.product-selection h5 {
+  text-align: center;
+  margin-top: 20px;
 }

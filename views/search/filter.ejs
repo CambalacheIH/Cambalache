@@ -1,4 +1,4 @@
-<% if(products.length > 0) { %>
+<!--<% if(products.length > 0) { %>
   <% products.forEach((product) => { %>
   <li>
     <%= product.productName %> <br>
@@ -12,4 +12,34 @@
 <% }) %>
 <% } else { %>
   <p>No products available with your preferences, try another search</p>
-<% } %>
+<% } %>-->
+
+<div class="container">
+  <h4>Products with your filters</h4>
+  <% if(products.length > 0) { %>
+    <div class="row">
+      <% products.forEach((product) => { %>
+        <div class="col s12 m4 products">
+          <div class="card sticky-action hoverable large">
+            <div class="card-image">
+              <img src="<%= product.productPhoto%>">
+            </div>
+            <div class="card-content">
+              <p><b><%= product.productName %></b></p>
+              <p><%= product.productDescription %><p>
+              <p><b>Minimum price: </b><%= product.productMinPrice %>€</p>
+              <p><b>Maximum price: </b><%= product.productMaxPrice %>€</p>
+              <p><b>Category: </b><%= product.categories %></p>
+            </div>
+            <div class="card-action">
+              <a href="/search/<%= product._id %>" class="btn btn-config btn-like"><i class="material-icons left">favorite</i>I like it</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p>No products available with your preferences, try another search</p>
+  <% } %>
+</div>
+
