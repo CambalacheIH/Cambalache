@@ -1,42 +1,76 @@
-<% if (product.isNew) { %>
- <h2>Create a new product</h2>
-<% } else { %>
- <h2>Edit your product</h2>
-<% } %>
+<div class="container">
 
-<% if (typeof(message) !== 'undefined' && message) { %>
-  <pre><%= message %></pre>
-<% } %>
-
-<% if (product.isNew) {%>
-  <form action="/profile/products" method="POST" enctype="multipart/form-data">
-<% } else { %>
-  <form action="/profile/products/edit/<%= product._id %>" method="POST">
-<% } %>
-  Product Name:
-  <input type="text" name="productName" value="<%= product.productName %>">
-  Description:
-  <input type="text" name="productDescription" value="<%= product.productDescription %>">
-  Minimum Price:
-  <input type="number" name="productMinPrice" value="<%= product.productMinPrice %>">
-  maximum Price
-  <input type="number" name="productMaxPrice" value="<%= product.productMaxPrice %>" >
-  category:
-  <select name="categories">
-    <% categories.forEach((category) =>{%>
-      <option value="<%= category.toLowerCase()%>" <%= product.categories == category ? 'selected' :''%>><%=category%></option>
-    <%})%>
-  </select>
-
-  <% if (product.isNew) {%>
-    photo
-    <input class="product-img" type="file" name="pic" />
-  <% } %>
-  <% if (product.isNew) {%>
-    <button type="submit">Create new product</button>
+  <% if (product.isNew) { %>
+    <h3>Create a new product</h2>
   <% } else { %>
-    <button type="submit">Edit your product</button>
+    <h3>Edit your product</h2>
   <% } %>
 
+  <% if (typeof(message) !== 'undefined' && message) { %>
+    <pre><%= message %></pre>
+  <% } %>
 
-</form>
+  <div class="row">
+    <% if (product.isNew) {%>
+      <form action="/profile/products" method="POST" enctype="multipart/form-data">
+    <% } else { %>
+      <form action="/profile/products/edit/<%= product._id %>" method="POST">
+    <% } %>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="name" name="productName" value="<%= product.productName %>" type="text" class="validate">
+            <label for="name">Product name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="description" name="productDescription" data-length="200" class="materialize-textarea"><%= product.productDescription %></textarea>
+            <label for="description">Description</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="minPrice" name="productMinPrice" value="<%= product.productMinPrice %>" type="number" class="validate">
+            <label for="minPrice">Minimum price</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="maxPrice" name="productMaxPrice" value="<%= product.productMaxPrice %>" type="number" class="validate">
+            <label for="maxPrice">Maximum price</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <select name="categories">
+              <% categories.forEach((category) =>{%>
+                <option value="<%= category.toLowerCase()%>" <%= product.categories == category ? 'selected' :'' %> ><%=category%></option>
+              <% }) %>
+            </select>
+            <label>Category</label>
+          </div>
+        </div>
+        <% if (product.isNew) {%>
+          <div class="row">
+            <div class="file-field input-field">
+              <div class="btn btn-cambalache">
+                <span>Photo</span>
+                <input type="file" name="pic">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+          </div>
+        <% } %>
+
+        <% if (product.isNew) {%>
+          <button type="submit" class="btn-large btn-config btn-cambalache">
+            Create new product
+          </button>
+        <% } else { %>
+          <button type="submit" class="btn-large btn-config btn-cambalache">
+            Edit your product
+          </button>
+        <% } %>
+    </form>
+  </div>
+</div>

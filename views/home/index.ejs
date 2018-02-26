@@ -1,13 +1,3 @@
-<!--<header>
-
-<button type="submit">Login with email</button>
-<a href="/auth/facebook">Login With Facebook</a>
- <a href="/auth/google">Login with Google</a>
-<button type="submit">Sign up</button>
-
-</header>
-<div> lorem ipsum dolor </div>-->
-
 <div class="modal login" id="login">
   <div class="modal-content">
     <h5>Log in</h4>
@@ -16,7 +6,11 @@
         <div class="row">
           <div class="input-field col s12">
             <input id="email" type="email" name="email" class="validate" required>
-            <label for="email">Email</label>
+            <% if (typeof(error) != 'undefined' && error.email) { %>
+              <label for="email" data-error="<%= error.email %>">Email</label>
+            <% } else { %>
+              <label for="email">Email</label>
+            <% } %>
           </div>
         </div>
         <div class="row">
@@ -27,8 +21,8 @@
         </div>
         <div class="row">
           <div class="col s12 submit-container">
-            <button class="btn btn-cambalache btn-config" type="submit" name="action">Submit
-              <i class="material-icons left">send</i>
+            <button class="btn btn-cambalache btn-config" type="submit" name="action">
+              <i class="material-icons left">send</i>Submit
             </button>
           </div>
         </div>
@@ -62,7 +56,7 @@
         <div class="row">
           <div class="input-field col s12">
             <input id="name-sign" type="text" name="name" class="validate" required>
-            <label for="name-sign">Email</label>
+            <label for="name-sign">Name</label>
           </div>
         </div>
         <div class="row">
@@ -95,7 +89,6 @@
     <div class="container">
       <div class="info-home">
         <h1 class="valign-wrapper">Your old stuff can be someones passion</h1>
-        <a class="btn-large btn-config btn-cambalache z-depth-2" href="/login">Discover more</a>
       </div>
     </div>
   </div>
