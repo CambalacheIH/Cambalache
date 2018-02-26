@@ -183,3 +183,10 @@ body {
   text-align: center;
   margin-top: 20px;
 }
+
+/* Match */
+
+.match .btns-match {
+  display: flex;
+  margin-bottom: 20px;
+}

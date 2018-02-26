@@ -1,4 +1,4 @@
-<b>First product</b><br>
+<!--<b>First product</b><br>
 
 <%= match.firstProductId.productName %><br>
 <%= match.firstProductOwner.name %><br>
@@ -32,4 +32,41 @@
 
 <form action="/match/<%= match.firstProductId.id %>/<%= match.secondProductId.id %>/reject" method="POST">
   <input type="submit" value="Reject trade">
-</form>
+</form>-->
+
+<div class="container match">
+  <h4>Match information</h4>
+  <div class="btns-match">
+    <form action="/match/<%= match.firstProductId.id %>/<%= match.secondProductId.id %>/accept" method="POST">
+      <input type="submit" value="Accept" class="btn btn-config green lighten-1">
+    </form>
+    <form action="/match/<%= match.firstProductId.id %>/<%= match.secondProductId.id %>/reject" method="POST">
+      <input type="submit" value="Reject trade" class="btn btn-config btn-delete">
+    </form>
+  </div>
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card medium">
+        <div class="card-image">
+          <img src="<%= match.firstProductId.productPhoto %>">
+        </div>
+        <div class="card-content">
+          <p><b><%= match.firstProductId.productName %></b></p>
+          <p><%= match.firstProductId.productDescription %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6">
+      <div class="card medium">
+        <div class="card-image">
+          <img src="<%= match.secondProductId.productPhoto %>">
+        </div>
+        <div class="card-content">
+          <p><b><%= match.secondProductId.productName %></b></p>
+          <p><%= match.secondProductId.productDescription %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h4>Pickup point</h4>
+</div>
