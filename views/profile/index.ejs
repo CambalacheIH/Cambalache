@@ -2,18 +2,20 @@
   <div class="col s3 left-info">
     <div class="profile-info">
       <h4>Your profile info:</h4>
-      <p><%= user.name %> <%= user.surname %></p>
-      <p><%= user.email %></p>
+      <p><i class="material-icons left">person</i><%= user.name %> <%= user.surname %></p>
+      <p><i class="material-icons left">email</i><%= user.email %></p>
       <h4>Your filter preferences:</h4>
-      <p><b>Minimum price:</b> <%= user.minPrice %>€</p>
-      <p><b>Maximum price:</b> <%= user.maxPrice %>€</p>
-      <p><b>Categories:</b></p>
-      <% categories.forEach((category) => { %>
-        <div class="chip">
-          <%= category %>
-        </div>
-      <% }) %>
-      <br>
+      <p><i class="material-icons left">euro_symbol</i><b>Minimum price:</b> <%= user.minPrice %>€</p>
+      <p><i class="material-icons left">euro_symbol</i><b>Maximum price:</b> <%= user.maxPrice %>€</p>
+      <p><i class="material-icons left">label</i><b>Categories:</b></p>
+      <div>
+        <% categories.forEach((category) => { %>
+          <div class="chip">
+            <%= category %>
+          </div>
+        <% }) %>
+      </div>
+      <p><i class="material-icons left">location_on</i><%= user.pickup.name %></p>
       <a href="/profile/<%= user._id %>" class="btn btn-config btn-cambalache left btn-edit-profile"><i class="material-icons">create</i>Edit</a>
       <a href="/search" class="btn btn-config btn-cambalache left"><i class="material-icons">search</i>Find products</a>
     </div>

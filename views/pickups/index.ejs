@@ -16,8 +16,7 @@
           <th>Name</th>
           <th>Open hour</th>
           <th>Close hour</th>
-          <th>Lat</th>
-          <th>Lng</th>
+          <th>Delete pickup</th>
         </tr>
       </thead>
       <tbody>
@@ -26,8 +25,6 @@
             <td><%= pickup.name %></td>
             <td><%= pickup.openHour %>:00h</td>
             <td><%= pickup.closeHour %>:00h</td>
-            <td><%= pickup.location.coordinates[0] %></td>
-            <td><%= pickup.location.coordinates[1] %></td>
             <td>
               <form action="/pickups/<%= pickup._id %>/delete" method="post">
                 <input type="submit" value="Delete" class="delete btn btn-config btn-delete">
