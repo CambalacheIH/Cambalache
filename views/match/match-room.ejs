@@ -1,40 +1,11 @@
-<!--<b>First product</b><br>
-
-<%= match.firstProductId.productName %><br>
-<%= match.firstProductOwner.name %><br>
-<%= match.firstProductOwner.email %><br>
-
-<br><br>
-
-<b>Second product</b><br>
-
-<%= match.secondProductId.productName %><br>
-<%= match.secondProductOwner.name %><br><br>
-
-<% if (match.firstProductOwnerAccept === false & match.secondProductOwnerAccept === false) { %>
-  <%= match.firstProductOwner.name %> and <%= match.secondProductOwner.name %> has not accepted yet
-<% } else if (match.firstProductOwnerAccept === true & match.secondProductOwnerAccept === false){ %>
-  <%= match.firstProductOwner.name %> has accepted the trade
-<% } else if (match.firstProductOwnerAccept === false & match.secondProductOwnerAccept === true){ %>
-  <%= match.secondProductOwner.name %> has accepted the trade
-<% } %>
-<br>
-<% if (user === match.firstProductOwner.id) { %>
-  Botón para el primer usuario
-<% } %>
-<% if (user === match.secondProductOwner.id) { %>
-  Botón para el segundo usuario
-<% } %>
-
-<form action="/match/<%= match.firstProductId.id %>/<%= match.secondProductId.id %>/accept" method="POST">
-  <input type="submit" value="Accept">
-</form>
-
-<form action="/match/<%= match.firstProductId.id %>/<%= match.secondProductId.id %>/reject" method="POST">
-  <input type="submit" value="Reject trade">
-</form>-->
-
-<div class="container match">
+<div class="container match white-container z-depth-1">
+<% if (match.rejected === true) { %>
+  <p>This exchange was rejected</p>
+<% } else if (match.firstProductOwnerAccept === true & match.secondProductOwnerAccept === true) { %>
+  <p>This exchange was succesful</p>
+  <p>You can contact your exchanger at</p>
+  <%= user == match.firstProductOwner ? match.firstProductOwner.email : match.secondProductOwner.email %>
+<% } else { %>
   <h4>Match information</h4>
   <div class="btns-match">
     <form action="/match/<%= match.firstProductId.id %>/<%= match.secondProductId.id %>/accept" method="POST">
@@ -44,6 +15,15 @@
       <input type="submit" value="Reject trade" class="btn btn-config btn-delete">
     </form>
   </div>
+
+  <% if (match.firstProductOwnerAccept === false & match.secondProductOwnerAccept === false) { %>
+    <%= match.firstProductOwner.name %> and <%= match.secondProductOwner.name %> has not accepted yet
+  <% } else if (match.firstProductOwnerAccept === true & match.secondProductOwnerAccept === false){ %>
+    <%= match.firstProductOwner.name %> has accepted the trade
+  <% } else if (match.firstProductOwnerAccept === false & match.secondProductOwnerAccept === true){ %>
+    <%= match.secondProductOwner.name %> has accepted the trade
+  <% } %>
+
   <div class="row">
     <div class="col s12 m6">
       <div class="card medium">
@@ -51,7 +31,7 @@
           <img src="<%= match.firstProductId.productPhoto %>">
         </div>
         <div class="card-content">
-          <p><b><%= match.firstProductId.productName %></b></p>
+          <p><b><%= match.firstProductId.productName %><%= match.pickup.name %></b></p>
           <p><%= match.firstProductId.productDescription %></p>
         </div>
       </div>
@@ -69,4 +49,49 @@
     </div>
   </div>
   <h4>Pickup point</h4>
+  <div class="row">
+    <div class="col s12">
+      <div id="map" class="map"></div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  var map;
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: <%= match.pickup.location.coordinates[0] %>, lng: <%= match.pickup.location.coordinates[1] %>},
+      zoom: 16,
+    });
+  }
+</script>
+
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJf0SFMueAL09OaMq4QHvqlLiSOTTkDZA&callback=initMap"></script>
+
+<script type="text/javascript">
+
+  var contentString = '<div>' +
+  '<h6 class="firstHeading">' + '<%= match.pickup.name %>' + '</h6>' +
+  '<p><b>' + 'Opening hour: ' + '</b>' + '<%= match.pickup.openHour %>:00h' + '</p>' +
+  '<p><b>' + 'Closing hour: ' + '</b>' + '<%= match.pickup.closeHour %>:00h' + '</p>' +
+  '</div>';
+
+  var infoWindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: {
+      lat: <%= match.pickup.location.coordinates[0] %>,
+      lng: <%= match.pickup.location.coordinates[1] %>
+    },
+    map: map
+  });
+
+  marker.addListener('click', function() {
+    infoWindow.open(map, marker);
+  });
+</script>
+<% } %>
 </div>

@@ -3,6 +3,7 @@ const passport = require('passport');
 const User = require('../models/user.model');
 const Product = require ('../models/product.model');
 const Match = require ('../models/match.model');
+const Pickup = require ('../models/pickup.model');
 const path = require ('path');
 
 module.exports.newRoom = (req, res, next) => {
@@ -13,16 +14,18 @@ module.exports.newRoom = (req, res, next) => {
     .populate('secondProductId')
     .populate('firstProductOwner')
     .populate('secondProductOwner')
+    .populate('pickup')
     .then(match => {
 
       if (match != undefined) {
         if (match.firstProductOwnerAccept === true & match.secondProductOwnerAccept === true) {
           Product.remove({ _id: { $in: [firstProductId, secondProductId] }})
             .then (() => {
-              res.redirect('/profile');
+              res.render('match/match-room', {
+                match: match,
+                user: req.user.id
+              })
           })
-        } else if (match.rejected === true) {
-          res.redirect('/profile')
         } else {
           res.render('match/match-room', {
             match: match,
@@ -32,6 +35,7 @@ module.exports.newRoom = (req, res, next) => {
       } else {
         Product.findById(firstProductId)
           .populate('owner')
+          .populate('pickup')
           .then(firstProduct => {
             Product.findById(secondProductId)
               .populate('owner')
@@ -43,7 +47,8 @@ module.exports.newRoom = (req, res, next) => {
                   secondProductId,
                   firstProductOwner,
                   secondProductOwner,
-                  combination: firstProductId+secondProductId
+                  combination: firstProductId+secondProductId,
+                  pickup: firstProduct.pickup
                 }).save()
                   .then(match => {
                     res.render('match/match-room', {

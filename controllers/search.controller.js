@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const User = require('../models/user.model');
 const Product = require ('../models/product.model');
+const Pickup = require('../models/pickup.model');
 const path = require ('path');
 const CATEGORIES = require ('../models/categories-types');
 
