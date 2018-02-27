@@ -1,19 +1,46 @@
-<div id="map" style="width:800px; height:500px"></div>
-
-<h2>Add a new pickup point</h2>
-<form action="/pickups" method="POST">
-  Name:
-  <input type="text" name="name">
-  Open hour:
-  <input type="number" name="openHour" max="23" min="0">
-  Close hour:
-  <input type="number" name="closeHour" max="23" min="0">
-  Latitude:
-  <input type="text" name="latitude" id="latitude">
-  Longitude:
-  <input type="text" name="longitude" id="longitude">
-  <input type="submit" value="Create pickup point">
-</form>
+<div class="container white-container z-depth-1">
+  <h4>Add a new pickup point</h4>
+  <div class="row">
+    <div class="col s12">
+      <div id="map" class="map"></div>
+      <form action="/pickups" method="POST">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="name" type="text" name="name" class="validate" required>
+            <label for="name">Pickup name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="open-hour" type="number" name="openHour" class="validate" required>
+            <label for="open-hour">Opening hour</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="close-hour" type="number" name="closeHour" class="validate" required>
+            <label for="close-hour">Closing hour</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="latitude" type="text" name="latitude" class="validate" placeholder="Click on the map to fill this field" required>
+            <label for="latitude">Latitude</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="longitude" type="text" name="longitude" class="validate" placeholder="Click on the map to fill this field" required>
+            <label for="longitude">Longitude</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 submit-container">
+            <button class="btn btn-cambalache btn-config" type="submit" name="action">
+              <i class="material-icons left">send</i>Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <!-- Google Maps -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJf0SFMueAL09OaMq4QHvqlLiSOTTkDZA&callback=initMap"
@@ -27,7 +54,7 @@ async defer>
 
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 40.392694, lng: -3.698421},
+      center: {lat: 40.416631, lng: -3.703748},
       zoom: 14,
       fullscreenControl: false
     });

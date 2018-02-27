@@ -45,6 +45,10 @@ const userSchema = new Schema({
     type: Number,
     default: 9999
   },
+  pickup: {
+    type: Schema.Types.ObjectId,
+    ref: 'Pickup'
+  },
   facebookID: {
     type: String,
   },

@@ -41,3 +41,11 @@ module.exports.create = (req, res, next) => {
       });
     });
 };
+
+module.exports.delete = (req, res, next) => {
+  Pickup.remove({ _id: req.params.id})
+    .then (() => {
+      res.redirect('/pickups');
+    })
+    .catch (error => next());
+};
