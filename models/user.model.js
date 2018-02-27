@@ -38,10 +38,16 @@ const userSchema = new Schema({
     }
   ],
   minPrice: {
-    type: Number
+    type: Number,
+    default: 1,
   },
   maxPrice: {
-    type: Number
+    type: Number,
+    default: 9999
+  },
+  pickup: {
+    type: Schema.Types.ObjectId,
+    ref: 'Pickup'
   },
   facebookID: {
     type: String,
@@ -55,6 +61,9 @@ userSchema.pre('save', function (next) {
   const user = this;
   if (!user.isModified('password')) {
       return next();
+  }
+  if (user.isNew) {
+    user.categories = CATEGORIES;
   }
 
   bcrypt.genSalt(SALT_WORK_FACTOR)

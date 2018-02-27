@@ -37,6 +37,10 @@ const matchSchema = new Schema({
   combination: {
     type: String,
     required: true
+  },
+  pickup: {
+    type: Schema.Types.ObjectId,
+    ref: 'Pickup'
   }
 }, {timestamps: true});
 

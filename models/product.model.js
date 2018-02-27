@@ -5,21 +5,21 @@ const CATEGORIES = require ('./categories-types');
 const productSchema = new Schema({
   productName: {
     type: String,
-    required: [true, 'introduce a valid product name'],
+    required: [true, 'Introduce a valid product name'],
     maxlength: 30
   },
   productDescription: {
     type: String,
-    required: [ true, 'explain the product main features'],
+    required: [ true, 'Explain the product main features'],
     maxlength: 200
   },
   productMinPrice: {
     type: Number,
-    required: [true, 'fill in with the minimun price you would accept']
+    required: [true, 'Fill in with the minimun price you would accept']
   },
   productMaxPrice: {
     type: Number,
-    required: [true, 'fill in with the maximum price you would accept']
+    required: [true, 'Fill in with the maximum price you would accept']
   },
   productPhoto: {
     type: String,
@@ -28,6 +28,11 @@ const productSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  },
+  pickup: {
+    type: Schema.Types.ObjectId,
+    ref: 'Pickup',
+    required: [true, 'A product needs a pickup point']
   },
   categories: {
     type: String,

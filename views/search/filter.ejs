@@ -25,11 +25,10 @@
               <img src="<%= product.productPhoto%>">
             </div>
             <div class="card-content">
-              <p><b><%= product.productName %></b></p>
+              <h5><b><%= product.productName %></b></h5>
               <p><%= product.productDescription %><p>
-              <p><b>Minimum price: </b><%= product.productMinPrice %>€</p>
-              <p><b>Maximum price: </b><%= product.productMaxPrice %>€</p>
-              <p><b>Category: </b><%= product.categories %></p>
+              <p><%= product.productMinPrice %>€ - <%= product.productMaxPrice %>€</p>
+              <p><i class="material-icons left">location_on</i><%= product.pickup.name %></p>
             </div>
             <div class="card-action">
               <a href="/search/<%= product._id %>" class="btn btn-config btn-like"><i class="material-icons left">favorite</i>I like it</a>
