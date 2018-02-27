@@ -1,5 +1,33 @@
 <div class="row profile">
-  <div class="col s3 left-info">
+  <ul class="collapsible profile-accordion white-text show-on-medium-and-up" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">person</i>Profile and search information</div>
+      <div class="collapsible-body">
+        <div class="profile-info">
+          <h4>Your profile info:</h4>
+          <p><i class="material-icons left">person</i><%= user.name %> <%= user.surname %></p>
+          <p><i class="material-icons left">email</i><%= user.email %></p>
+          <h4>Your filter preferences:</h4>
+          <p><i class="material-icons left">euro_symbol</i><b>Minimum price:</b> <%= user.minPrice %>€</p>
+          <p><i class="material-icons left">euro_symbol</i><b>Maximum price:</b> <%= user.maxPrice %>€</p>
+          <p><i class="material-icons left">label</i><b>Categories:</b></p>
+          <div>
+            <% categories.forEach((category) => { %>
+              <div class="chip">
+                <%= category %>
+              </div>
+            <% }) %>
+          </div>
+          <% if (typeof(user.pickup) != 'undefined' && user.pickup.name) { %>
+            <p><i class="material-icons left">location_on</i><%= user.pickup.name %></p>
+          <% } %>
+          <a href="/profile/<%= user._id %>" class="btn btn-config btn-cambalache btn-edit-profile"><i class="material-icons">create</i>Edit</a>
+          <a href="/search" class="btn btn-config btn-cambalache"><i class="material-icons">search</i>Find products</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="col s3 left-info hide-on-med-and-down">
     <div class="profile-info">
       <h4>Your profile info:</h4>
       <p><i class="material-icons left">person</i><%= user.name %> <%= user.surname %></p>
@@ -15,12 +43,14 @@
           </div>
         <% }) %>
       </div>
-      <p><i class="material-icons left">location_on</i><%= user.pickup.name %></p>
-      <a href="/profile/<%= user._id %>" class="btn btn-config btn-cambalache left btn-edit-profile"><i class="material-icons">create</i>Edit</a>
-      <a href="/search" class="btn btn-config btn-cambalache left"><i class="material-icons">search</i>Find products</a>
+      <% if (typeof(user.pickup) != 'undefined' && user.pickup.name) { %>
+        <p><i class="material-icons left">location_on</i><%= user.pickup.name %></p>
+      <% } %>
+      <a href="/profile/<%= user._id %>" class="btn btn-config btn-cambalache btn-edit-profile"><i class="material-icons">create</i>Edit</a>
+      <a href="/search" class="btn btn-config btn-cambalache"><i class="material-icons">search</i>Find products</a>
     </div>
   </div>
-  <div class="col s9 offset-s3 right-info">
+  <div class="col s12 l9 offset-l3 right-info">
     <div class="row">
       <h4 class="left">Your products:</h2>
       <a href="/profile/products/new" class="btn-large btn-config btn-cambalache right"><i class="material-icons">add</i>Add a new product</a>
@@ -32,12 +62,14 @@
             <div class="card sticky-action hoverable large">
               <div class="card-image">
                 <img src="<%= product.productPhoto%>">
-                <span class="card-title"><%= product.productName %></span>
               </div>
               <div class="card-content">
+                <h5><b><%= product.productName %></b></h5>
                 <p><%= product.productDescription %><p>
+                <p><%= product.productMinPrice %>€ - <%= product.productMaxPrice %>€</p>
+                <p><i class="material-icons left">location_on</i><%= product.pickup.name %></p>
               </div>
-              <div class="card-action">
+              <div class="card-action product-action">
                 <form action="profile/products/delete/<%= product._id %>" method="POST" class="right">
                   <input type="submit" value="delete" class="btn btn-delete">
                 </form>
@@ -52,34 +84,3 @@
     </div>
   </div>
 </div>
-
-
-<!--
-<form action="/logout">
-  <button type="submit">Logout</button>
-</form>
-
-<a href="/profile/products/new">Create New Product </a>
-
-<% if(products.length > 0) { %>
-
-
-<ul>
-  <% products.forEach((product) => { %>
-    <li>
-      <%= product.productName %> <br>
-      <%= product.productDescription %> <br>
-      <%= product.productMinPrice %> <br>
-      <%= product.productMaxPrice %> <br>
-      <%= product.categories %> <br>
-      <img class="product-img" src="<%= product.productPhoto%>">
-      <a href="/profile/products/<%= product._id %>"> Editar</a> <br>
-      <form action="profile/products/delete/<%= product._id %>" method="Post">
-        <input type="submit" value="delete">
-      </form>
-    </li>
-  <%})%>
-</ul>
-<% } else { %>
-  <p>No products available</p>
-<% } %> -->

@@ -5,10 +5,14 @@
       <ul class="right">
         <% if (session.email) { %>
           <li>
-            <a class="modal-trigger" href="/logout"><i class="material-icons left">exit_to_app</i>Log out</a>
+            <a class="show-on-medium-and-up hide-on-small-only" href="/logout"><i class="material-icons left">exit_to_app</i>Log out</a>
+            <a class="hide-on-med-and-up show-on-small" href="/logout"><i class="material-icons left">exit_to_app</i></a>
           </li>
         <% } else { %>
-          <li><a class="modal-trigger" href="#login"><i class="material-icons left">exit_to_app</i>Log in / Sign up</a></li>
+          <li>
+            <a class="show-on-medium-and-up hide-on-small-only" href="/login"><i class="material-icons left">exit_to_app</i>Log in / Sign up</a>
+            <a class="hide-on-med-and-up show-on-small" href="/login"><i class="material-icons left">exit_to_app</i></a>
+          </li>
         <% } %>
       </ul>
     </div>

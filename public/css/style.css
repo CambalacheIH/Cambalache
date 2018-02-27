@@ -132,11 +132,11 @@ body {
 .submit-container {
   text-align: center;
 }
-@media only screen and (min-width: 601px) {
+/* @media only screen and (min-width: 601px) {
   .login {
     width: 30%;
   }
-}
+} */
 
 .login-view, .signup-view, .white-container {
   padding: 40px;
@@ -146,8 +146,18 @@ body {
 
 /* Profile */
 
-.left-info {
+@media only screen and (min-width: 992px) {
+  .profile-accordion {
+    display: none !important;
+  }
+}
+.profile-accordion {
+  margin-top: 0 !important;
+}
+.profile-accordion .collapsible-header, .profile-accordion .collapsible-body, .left-info {
   background-color: #282668;
+}
+.left-info {
   height: calc(100vh - 60px);
   position: fixed;
   top: 60px;
@@ -164,6 +174,9 @@ body {
 .profile .products .card-image img{
   max-width: none;
 }
+.product-action .btn {
+  margin-top: 10px;
+}
 
 /* Profile edit */
 
@@ -173,30 +186,6 @@ body {
 .leave-changes {
   margin-top: 20px;
   display: block;
-}
-
-/* Selection product */
-
-.product-selection .product-selected {
-  padding: 40px;
-  background-color: #ffffff;
-  border-radius: 10px;
-}
-.product-selection .product-img {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
-.product-selection .product-img img {
-  max-width: max-content;
-  height: 100%;
-}
-.product-selection h5 {
-  text-align: center;
-  margin-top: 20px;
 }
 
 /* Match */

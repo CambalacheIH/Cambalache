@@ -13,22 +13,28 @@ Your products: <br>
   <% }) %>
 </ul>-->
 
-<div class="container product-selection">
+<div class="container white-container z-depth-1">
   <h4>You want this product</h4>
   <div class="row">
-    <div class="product-selected col s12 m6 offset-m3 z-depth-2 hoverable">
-      <div class="circle product-img">
-        <img src="<%= product.productPhoto %>" class="responsive-img">
+    <div class="col s12 m6 offset-m3">
+      <div class="card hoverable medium">
+        <div class="card-image">
+          <img src="<%= product.productPhoto%>">
+        </div>
+        <div class="card-content">
+          <h5><b><%= product.productName %></b></h5>
+          <p><%= product.productDescription %><p>
+          <p><%= product.productMinPrice %>€ - <%= product.productMaxPrice %>€</p>
+          <p><i class="material-icons left">location_on</i><%= product.pickup.name %></p>
+        </div>
       </div>
-      <h5><b><%= product.productName %></b></h5>
-      <p><%= product.productDescription %></p>
     </div>
   </div>
   <h4>Choose one of your products to exchange</h4>
   <div class="row">
     <% userProducts.forEach((userProduct) => { %>
       <div class="col s6 m4">
-        <div class="card small hoverable">
+        <div class="card medium hoverable">
           <div class="card-image">
             <img src="<%= userProduct.productPhoto %>">
           </div>

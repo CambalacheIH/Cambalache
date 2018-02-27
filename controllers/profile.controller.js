@@ -8,6 +8,7 @@ const CATEGORIES = require ('../models/categories-types');
 
 module.exports.index = (req, res, next) => {
   Product.find({'owner': req.user.id})
+    .populate('pickup')
     .then((products) => {
       User.findById(req.user.id)
         .populate('pickup')
@@ -47,11 +48,16 @@ module.exports.updateProfile = (req, res, next) => {
 };
 
 module.exports.newProduct = (req, res, next) => {
-  res.render('profile/products/new', {
-    product: new Product(),
-    path: req.path,
-    categories: CATEGORIES
-  });
+  Pickup.find()
+    .then((pickups) => {
+      res.render('profile/products/new', {
+        product: new Product(),
+        path: req.path,
+        categories: CATEGORIES,
+        pickups: pickups
+      });
+    })
+    .catch (error => next());
 };
 
 module.exports.createProduct = (req, res, next) => {
@@ -63,7 +69,8 @@ module.exports.createProduct = (req, res, next) => {
     productMaxPrice: req.body.productMaxPrice,
     owner: userId,
     productPhoto: null,
-    categories: req.body.categories
+    categories: req.body.categories,
+    pickup: req.body.pickup
   };
 
   if (req.file) {
@@ -76,12 +83,16 @@ module.exports.createProduct = (req, res, next) => {
     })
     .catch((error) => {
       console.log(`error trying to create product ${error.message}`);
-      res.render('profile/products/new', {
-        product: new Product(),
-        message: error.errors.productPhoto,
-        path: req.path,
-        categories: CATEGORIES
-      });
+      Pickup.find()
+        .then((pickups) => {
+          res.render('profile/products/new', {
+            product: new Product(),
+            message: error.errors.productPhoto,
+            path: req.path,
+            categories: CATEGORIES,
+            pickups: pickups
+          });
+        })
   });
 
 };
@@ -97,18 +108,22 @@ module.exports.deleteProduct = (req, res, next) => {
 module.exports.editProduct = (req, res, next) => {
   Product.findById(req.params.id)
     .then((product) => {
-      res.render('profile/products/new', {
-        product: product,
-        categories: CATEGORIES
-      });
+      Pickup.find()
+        .then((pickups) => {
+          res.render('profile/products/new', {
+            product: product,
+            categories: CATEGORIES,
+            pickups: pickups
+          });
+        })
     })
     .catch (error => next ());
 };
 
 module.exports.updateProduct = (req, res, next) => {
   const productId = req.params.id;
-  const { productName, productDescription, productMinPrice, productMaxPrice, categories } = req.body;
-  const updates = { productName, productDescription, productMinPrice, productMaxPrice, categories};
+  const { productName, productDescription, productMinPrice, productMaxPrice, categories, pickup } = req.body;
+  const updates = { productName, productDescription, productMinPrice, productMaxPrice, categories, pickup};
 
   Product.findByIdAndUpdate(productId, updates).then((product) => {
     res.redirect('/profile');
