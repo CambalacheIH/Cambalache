@@ -24,25 +24,29 @@
       <a href="/profile/products/new" class="btn-large btn-config btn-cambalache right"><i class="material-icons">add</i>Add a new product</a>
     </div>
     <div class="row">
-      <% products.forEach((product) => { %>
-        <div class="col s12 m4 products">
-          <div class="card sticky-action hoverable large">
-            <div class="card-image">
-              <img src="<%= product.productPhoto%>">
-              <span class="card-title"><%= product.productName %></span>
-            </div>
-            <div class="card-content">
-              <p><%= product.productDescription %><p>
-            </div>
-            <div class="card-action">
-              <form action="profile/products/delete/<%= product._id %>" method="POST" class="right">
-                <input type="submit" value="delete" class="btn btn-delete">
-              </form>
-              <a href="/profile/products/<%= product._id %>" class="btn right btn-edit">Edit</a>
+      <% if (products.length > 0) { %>
+        <% products.forEach((product) => { %>
+          <div class="col s12 m4 products">
+            <div class="card sticky-action hoverable large">
+              <div class="card-image">
+                <img src="<%= product.productPhoto%>">
+                <span class="card-title"><%= product.productName %></span>
+              </div>
+              <div class="card-content">
+                <p><%= product.productDescription %><p>
+              </div>
+              <div class="card-action">
+                <form action="profile/products/delete/<%= product._id %>" method="POST" class="right">
+                  <input type="submit" value="delete" class="btn btn-delete">
+                </form>
+                <a href="/profile/products/<%= product._id %>" class="btn right btn-edit">Edit</a>
+              </div>
             </div>
           </div>
-        </div>
-      <% }) %>
+        <% }) %>
+      <% } else { %>
+        <p>You don't have products yet, go ahead and add some.</p>
+      <% } %>
     </div>
   </div>
 </div>
