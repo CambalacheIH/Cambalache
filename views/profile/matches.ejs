@@ -1,0 +1,25 @@
+<div class="container white-container z-depth-1">
+  <h4>Your matches</h4>
+  <div class="row">
+    <% matches.forEach((match) => { %>
+      <% if ((match.firstProductOwnerAccept == false || match.secondProductOwnerAccept == false) && match.rejected == false) { %>
+      <div class="col s12 m4 products">
+        <div class="card sticky-action hoverable large">
+          <div class="card-image">
+            <img src="<%= match.firstProductId.productPhoto %>">
+          </div>
+          <div class="card-content">
+            <h5><b><%= match.firstProductId.productName %></b></h5>
+            <p><%= match.firstProductId.productDescription %><p>
+            <p><%= match.firstProductId.productMinPrice %>€ - <%= match.firstProductId.productMaxPrice %>€</p>
+            <p><i class="material-icons left">location_on</i><%= match.pickup.name %></p>
+          </div>
+          <div class="card-action product-action">
+            <a href="/match/<%= match.firstProductId.id %>/<%= match.secondProductId %>" >Go to match room</a>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    <% }) %>
+  </div>
+</div>

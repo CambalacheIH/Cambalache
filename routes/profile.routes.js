@@ -7,6 +7,8 @@ const upload = require('../configs/multer.config');
 router.get('/', secure.isAuthenticated, profileController.index);
 router.post('/products', secure.isAuthenticated, upload.single('pic'), profileController.createProduct);
 
+router.get('/matches', secure.isAuthenticated, profileController.matches);
+
 router.get('/:id', secure.isAuthenticated, secure.isUser, profileController.editProfile);
 router.post('/:id', secure.isAuthenticated, secure.isUser, profileController.updateProfile);
 

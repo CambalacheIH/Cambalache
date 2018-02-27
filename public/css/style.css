@@ -177,6 +177,9 @@ body {
 .product-action .btn {
   margin-top: 10px;
 }
+.new-product-btn {
+  margin-right: 10px;
+}
 
 /* Profile edit */
 

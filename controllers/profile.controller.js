@@ -3,6 +3,7 @@ const passport = require('passport');
 const User = require('../models/user.model');
 const Product = require ('../models/product.model');
 const Pickup = require ('../models/pickup.model');
+const Match = require ('../models/match.model');
 const path = require ('path');
 const CATEGORIES = require ('../models/categories-types');
 
@@ -134,6 +135,19 @@ module.exports.pic = (req, res, next ) =>{
   Product.findById (req.params.id)
     .then((product) => {
       res.sendFile(path.join(__dirname, '../', product.file));
+    })
+    .catch(error => next());
+};
+
+module.exports.matches = (req, res, next) => {
+  Match.find({$or: [{ firstProductOwner: req.user.id}, { secondProductOwner: req.user.id }]})
+    .populate('firstProductId')
+    .populate('pickup')
+    .then((matches) => {
+      res.render('profile/matches', {
+        matches: matches
+      });
+      console.log(matches)
     })
     .catch(error => next());
 };

@@ -1,20 +1,4 @@
-<!--<% if(products.length > 0) { %>
-  <% products.forEach((product) => { %>
-  <li>
-    <%= product.productName %> <br>
-    <%= product.productDescription %> <br>
-    <%= product.productMinPrice %> <br>
-    <%= product.productMaxPrice %> <br>
-    <%= product.categories %> <br>
-    <img src="<%= product.productPhoto%>"><br>
-    <a href="/search/<%= product._id %>">I like it</a>
-  </li>
-<% }) %>
-<% } else { %>
-  <p>No products available with your preferences, try another search</p>
-<% } %>-->
-
-<div class="container">
+<div class="container white-container z-depth-1">
   <h4>Products with your filters</h4>
   <% if(products.length > 0) { %>
     <div class="row">
