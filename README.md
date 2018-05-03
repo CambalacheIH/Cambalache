@@ -4,6 +4,13 @@ Project created by [Paloma Ramírez Oyola](https://www.linkedin.com/in/palomaram
 
 Cambalache is a platform where users can exchange second-hand clothes.
 
+## Technologies used
+
+* Node.js and Express for the server and API REST
+* EJS as template view engine.
+* Passport for authentication with OAuth 2.0 for social logins.
+* Mongoose ORM for models and interacting with our MongoDB database from Node.js
+
 ![Cambalache home](https://res.cloudinary.com/plasocloud/image/upload/v1525347223/cambalache.png)
 
 ## Features
@@ -25,10 +32,3 @@ When you have uploaded your products and set your preferences, go ahead and clic
 The last step is creating a match room with one of your products and wait for the other user involved in the exchange to accept or reject the trade.
 
 ![Cambalache match](https://res.cloudinary.com/plasocloud/image/upload/v1525350109/match.png)
-
-## Technologies
-
-* This project was developer using Node and Express.
-* EJS as view engine.
-* Passport for authentication with social logins.
-* Mongoose for interacting with our MongoDB database.
